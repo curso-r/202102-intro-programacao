@@ -1,0 +1,63 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(magrittr)
+main_repo <- "main-intro-programacao"
+turma <- "202102-intro-programacao"
+```
+
+## Configuração inicial
+
+#### Passo 1: Criar um projeto do RStudio
+
+Faça um projeto do RStudio para usar durante todo o curso e em seguida abra-o.
+
+#### Passo 2: Baixar o material
+
+Certifique que você está dentro do projeto criado no passo 1 e rode o código abaixo, baixe [este arquivo](https://github.com/curso-r/main-intro-programacao/archive/master.zip) e descompacte dentro da pasta do projeto.
+
+## Slides
+
+```{r, echo = FALSE}
+knitr::kable(
+  tibble::tibble(
+    slide = CursoR:::list_github_files(main_repo, "slides/", "html"),
+    link = paste0("https://curso-r.github.io/", main_repo, "/", slide)
+  ) %>% 
+    dplyr::filter(!stringr::str_detect(slide, "_files/"))
+)
+```
+
+## Scripts usados em aula
+
+```{r, echo = FALSE}
+knitr::kable(
+  tibble::tibble(
+    script = list.files("R/", pattern = ".R"),
+    link = paste0("https://curso-r.github.io/", turma, "/R/", script)
+  )
+)
+```
+
+## Trabalhos finais
+
+Em breve!
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval = FALSE}
+tab <- googlesheets4::read_sheet(ss = googlesheets4::as_sheets_id("1Qvgvx74CPfl5HZtiOBEUGlFulklMh05gHS7sxE6JFT4"))
+
+tab %>% 
+  dplyr::filter(turma == "202102-intro-programacao") %>% 
+  dplyr::select(Aluno = aluno, Link = link) %>% 
+  knitr::kable()
+```
+

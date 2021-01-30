@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introdução à programação com R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <script src="libs/header-attrs-2.6.6/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard-0.2.4/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard-0.2.4/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="libs/tile-view-0.2.4/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.4/tile-view.js"></script>
+    <link rel="stylesheet" href="css/custom-intro.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução à programação com R
+## Material complementar da Aula 4
+### <img src = 'https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bdd2e5c21538a29eade7cbd2b/67e5c/img/logo/cursor1-5.png' width = '20%'>
+
+---
+
+
+
+
+
+
+
+
+
+
+
+# Tópicos desta aula
+
+- [Funções](#funcoes)
+
+- [Caminhos absolutos e relativos](#caminhos)
+
+- [Lidando com arquivos](#pacotefs) com o pacote [`fs`](https://fs.r-lib.org/)
+---
+class: middle, center
+name: funcoes
+
+# <span style="color:#6495ed; font-weight: bold;">Funções</span>
+
+---
+
+## Funções
+
+Enquanto objetos são *nomes* que guardam *valores*, funções no R são *nomes* que guardam um **código de R**. A ideia é a seguinte: sempre que você rodar uma função, o código que ela guarda será executado e um resultado nos será devolvido.
+
+Funções são tão comuns e intuitivas (provavelmente você já usou funções no Excel), que mesmo sem definir o que elas são, nós já utilizamos funções nas seções anteriores:
+
+- a função `c()` foi utilizada para criar vetores;
+- a função `class()` foi utilizada para descobrir a classe de um objeto.
+- a função `dim()` foi utilizada para verificarmos a dimensão de um *data frame*.
+
+---
+## Argumentos
+
+Diferentemente dos objetos, as funções podem receber **argumentos**. Argumentos são os valores que colocamos dentro dos parênteses e que as funções precisam para funcionar (calcular algum resultado). Por exemplo, a função `c()` precisa saber quais são os valores que formarão o vetor que ela irá criar.
+
+
+```r
+c(1, 3, 5)
+```
+
+```
+## [1] 1 3 5
+```
+
+Nesse caso, os valores `1`, `3` e `5` são os argumentos da função `c()`. **Os argumentos de uma função são sempre separados por vírgulas**.
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Funções no R têm personalidade. Cada uma pode funcionar de um jeito diferente das demais, mesmo quando fazem tarefas parecidas. Por exemplo, vejamos a função `sum()`.
+
+
+```r
+sum(1, 3)
+```
+
+```
+## [1] 4
+```
+
+Como você deve ter percebido, essa função retorna a soma de seus argumentos. Também podemos passar um vetor como argumento, e ela retornará a soma dos elementos do vetor.
+
+
+```r
+sum(c(1, 3))
+```
+
+```
+## [1] 4
+```
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Já a função `mean()`, que calcula a média de um conjunto de valores, exige que você passe valores na forma de um vetor:
+
+
+```r
+# Só vai considerar o primeiro número na média
+mean(1, 3)
+```
+
+```
+## [1] 1
+```
+
+```r
+# Considera todos os valores dentro do vetor na média
+mean(c(1, 3))
+```
+
+```
+## [1] 2
+```
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Os argumentos das funções também têm nomes, que podemos ou não usar na hora de usar uma função. Veja por exemplo a função `seq()`. 
+
+
+```r
+seq(from = 4, to = 10, by = 2)
+```
+
+```
+## [1]  4  6  8 10
+```
+
+Entre outros argumentos, ela possui os argumentos `from=`, `to=` e `by=`. O que ela faz é criar uma sequência (vetor) de `by` em `by` que começa em `from` e termina em `to`. No exemplo, criamos uma função de 2 em 2 que começa em 4 e termina em 10.
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Também poderíamos usar a mesma função sem colocar o nome dos argumentos:
+
+
+```r
+seq(4, 10, 2)
+```
+
+```
+## [1]  4  6  8 10
+```
+
+Para utilizar a função sem escrever o nome dos argumentos, você precisa colocar os valores na ordem em que os argumentos aparecem. E se você olhar a documentação da função `seq()`, fazendo `help(seq)`, verá que a ordem dos argumentos é justamente `from=`, `to=` e `by=`.
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Escrevendo o nome dos argumentos, não há problema em alterar a ordem dos argumentos:
+
+
+```r
+seq(by = 2, to = 10, from = 4)
+```
+
+```
+## [1]  4  6  8 10
+```
+
+Mas se especificar os argumentos, a ordem importa. Veja que o resultado será diferente.
+
+
+```r
+seq(2, 10, 4)
+```
+
+```
+## [1]  2  6 10
+```
+
+---
+## Vocabulário
+
+A seguir, apresentamos algumas funções nativas do R úteis para trabalhar com *data frames* :
+
+- `head()` - Mostra as primeiras 6 linhas.
+- `tail()` - Mostra as últimas 6 linhas.
+- `dim()` - Número de linhas e de colunas.
+- `names()` - Os nomes das colunas (variáveis).
+- `str()` - Estrutura do *data frame*. Mostra, entre outras coisas, as classes de cada coluna.
+- `cbind()` - Acopla duas tabelas lado a lado.
+- `rbind()` - Empilha duas tabelas.
+
+---
+## Criando a sua própria função
+
+Além de usar funções já prontas, você pode criar a sua própria função. A sintaxe é a seguinte:
+
+
+```r
+nome_da_funcao &lt;- function(argumento_1, argumento_2) {
+  
+  # Código que a função irá executar
+  
+}
+```
+
+Repare que `function` é um nome reservado no R, isto é, você não pode criar um objeto com esse nome.
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Um exemplo: vamos criar uma função que soma dois números.
+
+
+```r
+minha_soma &lt;- function(x, y) {
+  soma &lt;- x + y
+  
+  soma  # resultado retornado
+}
+```
+
+Essa função tem os seguintes componentes:
+
+- `minha_soma`: nome da função
+- `x` e `y`: argumentos da função
+- `soma &lt;- x + y`: operação que a função executa
+- `soma`: valor retornado pela função
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Após rodarmos o código de criar a função, podemos utilizá-la como qualquer outra função do R.
+
+
+```r
+minha_soma(2, 2)
+```
+
+```
+## [1] 4
+```
+
+O objeto `soma` só existe *dentro da função*, isto é, além de ele não ser colocado no seu *environment*, ele só existirá na memória (RAM) enquanto o R estiver executando a função. Depois disso, ele será apagado. O mesmo vale para os argumentos `x` e `y`.
+
+---
+&lt;br&gt;&lt;br&gt;
+
+O valor retornado pela função representa o resultado que receberemos ao utilizá-la. Por padrão, **a função retornará sempre a última linha de código que existir dentro dela**. No nosso exemplo, a função retorna o valor contido no objeto `soma`, pois é isso que fazemos na última linha de código da função.
+
+Repare que se atribuirmos o resultado a um objeto, ele não será mostrado no console:
+
+
+```r
+resultado &lt;- minha_soma(3, 3)
+
+# Para ver o resultado, rodamos o objeto `resultado`
+resultado
+```
+
+```
+## [1] 6
+```
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Agora, o que acontece se a última linha da função não devolver um objeto? Veja:
+
+
+```r
+minha_nova_soma &lt;- function(x, y) {
+  soma &lt;- x + y
+}
+```
+
+A função `minha_nova_soma()` apenas cria o objeto `soma`, sem retorná-lo como na função `minha_soma()`. Se utilizarmos essa nova função, nenhum valor é devolvido no console:
+
+
+```r
+minha_nova_soma(1, 1)
+```
+
+---
+&lt;br&gt;&lt;br&gt;
+
+No entanto, a última linha da função agora é a atribuição `soma &lt;- x + y` e esse será o "resultado retornado". Assim, podemos visualizar o resultado da função fazendo:
+
+
+```r
+resultado &lt;- minha_nova_soma(1, 1)
+
+resultado
+```
+
+```
+## [1] 2
+```
+
+
+É como se, por trás das cortinas, o R estivesse fazendo `resultado &lt;- soma &lt;- x + y`, mas apenas o objeto `resultado` continua existindo, já que os objetos `soma`, `x`e `y` são descartados após a função ser executada.
+
+
+
+---
+class: middle, center
+name: caminhos
+
+# <span style="color:#6495ed; font-weight: bold;">Caminhos absolutos e relativos</span>
+
+
+---
+## Caminhos
+
+Um passo importante na tarefa de importação de dados para o R é saber onde está o arquivo que queremos importar.
+
+Toda função de importação vai exigir um **caminho**, uma string que representa o endereço do arquivo no computador.
+
+Há duas formas de passarmos o caminho de arquivo: usar o **caminho absoluto** ou usar o **caminho relativo**.
+
+Antes de falarmos sobre a diferença dos dois, precisamos definir o que é o **diretório de trabalho**.
+
+---
+## Diretório de trabalho
+
+O diretório de trabalho (*working directory*) é a pasta em que o R vai procurar arquivos na hora de ler informações ou gravar arquivos na hora de salvar objetos.
+
+Se você está usando um projeto, o diretório de trabalho da sua sessão será, por padrão, a pasta raiz do seu projeto (é a pasta que contém o arquivo com extensão `.Rproj`).
+
+Se você não estiver usando um projeto ou não souber qual é o seu diretório de trabalho, você pode descobri-lo usando a seguinte função `getwd()`.
+
+Ela vai devolver uma string com o caminho do seu diretório de trabalho.
+
+A função `setwd()` pode ser utilizada para mudar o diretório de trabalho. Como argumento, ela recebe o caminho para o novo diretório.
+
+---
+## Caminhos absolutos
+
+Caminhos absolutos são aqueles que tem início na pasta raiz do seu computador/usuário. Por exemplo:
+
+`/Users/beatrizmilz/Documents/Curso-R/main-intro-programacao/slides`
+
+Esse é o caminho absoluto para a pasta onde esses slides foram produzidos.
+
+Na grande maioria dos casos, caminhos absolutos são uma **má prática**, pois deixam o código irreprodutível. Se você trocar de computador ou passar o script para outra pessoa rodar, o código não vai funcionar, pois o caminho absoluto para o arquivo muito provavelmente será diferente.
+
+---
+## Caminhos relativos
+
+Caminhos relativos são aqueles que tem início no diretório de trabalho da sua sessão.
+
+O diretório de trabalho da sessão utilizada para produzir esses slides é a pasta `intro-programacao-em-r-mestre`. Veja o caminho absoluto no slide anterior. Então, o caminho relativo para a pasta onde esses slides foram produzidos seria apenas `slides/`.
+
+**Trabalhar com projetos no RStudio ajuda bastante o uso de caminhos relativos**, pois nos incentiva a colocar todos os arquivos da análise dentro da pasta do projeto.
+
+Assim, se você usar apenas caminhos relativos e compartilhar a pasta do projeto com alguém, todos os caminhos existentes nos códigos continuarão a funcionar em qualquer computador!
+
+
+---
+class: middle, center
+name: pacotefs
+
+# <span style="color:#6495ed; font-weight: bold;">Lidando com arquivos</span>
+## com o pacote [`fs`](https://fs.r-lib.org/)
+
+---
+## Lidando com arquivos com o pacote [`fs`](https://fs.r-lib.org/)
+
+...
+&lt;!-- Escrever! --&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

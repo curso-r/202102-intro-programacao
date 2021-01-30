@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introdução à programação com R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <script src="libs/header-attrs-2.6.6/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard-0.2.4/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard-0.2.4/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="libs/tile-view-0.2.4/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.4/tile-view.js"></script>
+    <link rel="stylesheet" href="css/custom-intro.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução à programação com R
+## Material complementar da Aula 2
+### <img src = 'https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bdd2e5c21538a29eade7cbd2b/67e5c/img/logo/cursor1-5.png' width = '20%'>
+
+---
+
+
+
+
+
+
+
+
+
+
+
+# Tópicos desta aula
+
+- [Pacotes](#pacotes)
+
+- [Importação de bases de dados](#importacao)
+
+- [Tabelas: Data.frames](#tabelas)
+
+- [Operadores](#operadores)
+
+- [Mais sobre Data.frames](#tabelas2)
+
+---
+class: middle, center
+name: pacotes
+
+# <span style="color:#6495ed; font-weight: bold;">Pacotes</span>
+
+---
+## Pacotes
+
+Um pacote no R é um conjunto de funções que visam resolver um problema em específico. O R já vem com alguns pacotes instalados. Geralmente chamamos esses pacotes de *base R*.
+
+Mas a força do R está na gigantesca variedade de pacotes desenvolvidos pela comunidade, em especial, pelos criadores do `tidyverse`.
+
+---
+## Instalando e carregando pacotes
+
+Para instalar um pacote, usamos a função `install.packages`.
+
+
+```r
+# Instalando um pacote
+install.packages("tidyverse")
+
+# Instalando vários pacotes de uma vez
+install.packages(c("tidyverse", "rmarkdown", "devtools"))
+```
+
+Para usar as funções de um pacote, precisamos carregá-lo. Fazemos isso usando a função `library()`.
+
+
+```r
+library(tidyverse)
+```
+
+---
+class:: center
+&lt;br&gt;&lt;br&gt;
+
+<span style="color:#6495ed; font-weight: bold;">Instale uma vez, carregue várias vezes!</span>
+
+&lt;img src="img/instalar_carregar.png" width="2059" /&gt;
+
+
+---
+class: middle, center
+name: importacao
+
+# <span style="color:#6495ed; font-weight: bold;">Importação de bases de dados</span>
+
+---
+
+## Importação de bases de dados
+### O que é?
+
+Importar uma base de dados para o R significa levar a informação contida no disco rígido (HD) para a mé moria RAM.
+
+&lt;img src="img/import.png" width="1284" /&gt;
+
+
+---
+## Lendo tabelas
+
+Para ler tabelas, como arquivos `.csv`, utilizaremos funções do pacote `readr`.
+
+Para isso, utilizamos a função `read_csv()` ou `read_csv2()`. Se o arquivo estiver bem formatado, a função só precisa do caminho até o arquivo para funcionar.
+
+
+---
+&lt;br&gt;&lt;br&gt;
+
+A mensagem devolvida pela função indica qual classe foi atribuída para cada coluna da base.
+
+.tiny[
+
+```
+## ℹ Using ',' as decimal and '.' as grouping mark. Use `read_delim()` for more control.
+```
+
+```
+## 
+## ── Column specification ─────────────────────────────────────────────────────────────
+## cols(
+##   ano = col_double(),
+##   mes = col_double(),
+##   dia = col_double(),
+##   horario_saida = col_double(),
+##   saida_programada = col_double(),
+##   atraso_saida = col_double(),
+##   horario_chegada = col_double(),
+##   chegada_prevista = col_double(),
+##   atraso_chegada = col_double(),
+##   companhia_aerea = col_character(),
+##   voo = col_double(),
+##   cauda = col_character(),
+##   origem = col_character(),
+##   destino = col_character(),
+##   tempo_voo = col_double(),
+##   distancia = col_double(),
+##   hora = col_double(),
+##   minuto = col_double(),
+##   data_hora = col_datetime(format = "")
+## )
+```
+]
+
+
+---
+&lt;br&gt;&lt;br&gt;
+
+- Em alguns países, como o Brasil, as vírgulas são utilizadas para separar as casas decimais dos números, inviabilizando os arquivos `.csv`.  Nesses casos, os arquivos `.csv` são na verdade separados por ponto-e-vírgula. Para ler bases separadas por ponto-e-vírgula no R, utilize a função `read_csv2()`.
+
+
+```r
+voos_csv &lt;- readr::read_csv2("../dados/voos_de_janeiro.csv")
+```
+
+- Arquivos `.txt` podem ser lidos com a função `read_delim()`. Além do caminho até o arquivo, você também precisa indicar qual é o caractere utilizado para separar as colunas da base.  Um arquivo separado por tabulação, por exemplo, pode ser lido utilizando a o código abaixo. O código `\t` é uma forma textual de representar a tecla TAB.
+
+
+- Para ler planilhas do Excel (arquivos `.xlsx` ou `.xls`), basta utilizarmos a função `read_excel()` do pacote `readxl`. 
+
+
+---
+class: middle, center
+name: tabelas
+
+# <span style="color:#6495ed; font-weight: bold;">Tabelas no R: Data frames</span>
+
+
+---
+## Tabelas no r: Data frames
+
+O objeto mais importante para o cientista de dados é, claro, a base de dados. No R, uma base de dados é representa por objetos chamados de *data frames*. Eles são equivalentes a uma tabela do SQL ou uma planilha do Excel.
+
+A principal característica de um *data frame* é possuir linhas e colunas:
+
+
+```r
+mtcars
+```
+
+.tiny[
+
+```
+##                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360        14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230          22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280          19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+```
+]
+
+---
+&lt;br&gt;&lt;br&gt;
+
+O `mtcars` é um *data frame* nativo do R que contém informações sobre diversos modelos de carros. Ele possui 32 linhas e 11 colunas (só estamos vendo as primeiras 10 linhas no slide anterior). 
+
+A primeira "coluna" representa apenas o *nome* das linhas (modelo do carro), não é uma coluna da base. Repare que ela não possui um nome, como as outras. Essa estrutura de nome de linha é própria de *data frames* no R. Se exportássemos essa base para o Excel, por exemplo, essa coluna não apareceria.
+
+Se você quiser saber mais sobre o `mtcars`, veja a documentação dele rodando `?mtcars` no **Console**.
+
+Para entender melhor sobre *data frames*, precisamos estudar um pouco sobre classes, vetores e testes lógicos.
+
+---
+## Classes
+
+A classe de um objeto é muito importante dentro do R. É a partir dela que as funções e operadores conseguem saber exatamente o que fazer com um objeto.
+
+Por exemplo, podemos somar dois números, mas não conseguimos somar duas letras (texto):
+
+
+```r
+1 + 1
+```
+
+```
+## [1] 2
+```
+
+```r
+"a" + "b"
+```
+
+```
+## Error in "a" + "b": argumento não-numérico para operador binário
+```
+
+O operador `+` verifica que `"a"` e `"b"` não são números (ou que a classe deles não é numérica) e devolve uma mensagem de erro informando isso.
+
+---
+## Texto
+
+Observe que para criar texto no R, colocamos os caracteres entre aspas. As aspas servem para diferenciar *nomes* (objetos, funções, pacotes) de *textos* (letras e palavras). Os textos são muito comuns em variáveis categóricas.
+
+
+```r
+a &lt;- 10
+# O objeto `a`, sem aspas
+a
+```
+
+```
+## [1] 10
+```
+
+```r
+# A letra (texto) `a`, com aspas
+"a"
+```
+
+```
+## [1] "a"
+```
+
+---
+## A classe de um objeto
+
+Para saber a classe de um objeto, basta rodarmos `class(nome-do-objeto)`.
+
+
+```r
+x &lt;- 1
+class(x)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+y &lt;- "a"
+class(y)
+```
+
+```
+## [1] "character"
+```
+
+```r
+class(mtcars)
+```
+
+```
+## [1] "data.frame"
+```
+
+
+
+---
+class: middle, center
+name: operadores
+
+# <span style="color:#6495ed; font-weight: bold;">Operadores</span>
+
+
+---
+## Operações lógicas
+
+Uma operação lógica é um teste que retorna **verdadeiro** ou **falso**. No R (e em outras linguagens de programação), esses valores dois valores recebem uma classe especial: `logical`.
+
+O verdadeiro no R vai ser representado pelo valor `TRUE` e o falso pelo valor `FALSE`. Esses nomes no R são **reservados**, isto é, você não pode chamar nenhum objeto de TRUE ou FALSE.
+
+.tiny[
+
+```r
+TRUE &lt;- 1
+## Error in TRUE &lt;- 1 : invalid (do_set) left-hand side to assignment
+```
+]
+
+---
+## Valores lógicos
+
+Checando a classe desses valores, vemos que são lógicos (também conhecidos como valores binários ou booleanos). Eles são os únicos possíveis valores dessa classe.
+
+
+```r
+class(TRUE)
+```
+
+```
+## [1] "logical"
+```
+
+```r
+class(FALSE)
+```
+
+```
+## [1] "logical"
+```
+
+Agora que conhecemos o `TRUE` e `FALSE`, podemos explorar os teste lógicos.
+
+---
+## Igualdades
+ 
+Começando pela igualdade: vamos testar se um valor é igual ao outro. Para isso, usamos o operador `==`.
+
+.tiny[
+
+```r
+# Testes com resultado verdadeiro
+1 == 1
+```
+
+```
+## [1] TRUE
+```
+
+```r
+"a" == "a"
+```
+
+```
+## [1] TRUE
+```
+
+```r
+# Testes com resultado falso
+1 == 2
+```
+
+```
+## [1] FALSE
+```
+
+```r
+"a" == "b"
+```
+
+```
+## [1] FALSE
+```
+]
+
+---
+## Diferenças
+
+Também podemos testar se dois valores são diferentes. Para isso, usamos o operador `!=`.
+
+.tiny[
+
+```r
+# Testes com resultado falso
+1 != 1
+```
+
+```
+## [1] FALSE
+```
+
+```r
+"a" != "a"
+```
+
+```
+## [1] FALSE
+```
+
+```r
+# Testes com resultado verdadeiro
+1 != 2
+```
+
+```
+## [1] TRUE
+```
+
+```r
+"a" != "b"
+```
+
+```
+## [1] TRUE
+```
+]
+
+---
+## Desigualdades
+
+Para comparar se um valor é maior que outro, temos à disposição 4 operadores:
+
+.tiny[
+
+```r
+# Maior
+3 &gt; 3
+```
+
+```
+## [1] FALSE
+```
+
+```r
+3 &gt; 2
+```
+
+```
+## [1] TRUE
+```
+
+```r
+# Maior ou igual
+3 &gt; 4
+```
+
+```
+## [1] FALSE
+```
+
+```r
+3 &gt;= 3
+```
+
+```
+## [1] TRUE
+```
+]
+
+---
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+# Menor 
+3 &lt; 3
+```
+
+```
+## [1] FALSE
+```
+
+```r
+3 &lt; 4
+```
+
+```
+## [1] TRUE
+```
+
+```r
+# Menor ou igual
+3 &lt; 2
+```
+
+```
+## [1] FALSE
+```
+
+```r
+3 &lt;= 3
+```
+
+```
+## [1] TRUE
+```
+
+---
+## Pertence
+
+Um outro operador muito útil é o `%in%`. Com ele, podemos verificar se um valor está dentro de um conjunto de valores (vetor).
+
+
+```r
+3 %in% c(1, 2, 3)
+```
+
+```
+## [1] TRUE
+```
+
+```r
+"a" %in% c("b", "c")
+```
+
+```
+## [1] FALSE
+```
+
+---
+## Filtros
+
+Os testes lógicos fazem parte de uma operação muito comum na manipulação de base de dados: os **filtros**. No Excel, por exemplo, quando você filtra uma planilha, o que está sendo feito por trás é um teste lógico.
+
+Falamos anteriormente que cada coluna das nossas bases de dados será representada dentro do R como um vetor. O comportamento que explica a importância dos testes lógicos na hora de filtrar uma base está ilustrado abaixo:
+
+
+```r
+minha_coluna &lt;- c(1, 3, 0, 10, -1, 5, 20)
+minha_coluna &gt; 3
+```
+
+```
+## [1] FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE
+```
+
+```r
+minha_coluna[minha_coluna &gt; 3]
+```
+
+```
+## [1] 10  5 20
+```
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Muitas coisas aconteceram no código anterior, vamos por partes.
+
+Primeiro, na operação `minha_coluna &gt; 3` o R fez um excelente uso do comportamento de reciclagem. No fundo, o que ele fez foi transformar (reciclar) o valor `3` no vetor `c(3, 3, 3, 3, 3, 3, 3)` e  testar se `c(1, 3, 0, 10, -1, 5, 20) &gt; c(3, 3, 3, 3, 3, 3, 3)`. 
+
+Como os operadores lógicos também são vetorizados (fazem operações elemento a elemento), os testes realizados foram `1 &gt; 3`, `3 &gt; 3`, `0 &gt; 3`, `10 &gt; 3`, `-1 &gt; 3`, `5 &gt; 3` e, finalmente, `20 &gt; 3`. Cada um desses testes tem o seu próprio resultado. Por isso a saída de `minha_coluna &gt; 3` é um vetor de verdadeiros e falsos, respectivos a cada um desses 7 testes.
+
+A segunda operação traz a grande novidade aqui: podemos usar os valores `TRUE` e `FALSE` para selecionar elementos de um vetor!
+
+A regra é a seguinte: **retornar** as posições que receberem `TRUE`, **não retornar** as posições que receberem `FALSE`. 
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Portanto, a segunda operação é equivalente a:
+
+
+```r
+minha_coluna[c(FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE)]
+```
+
+```
+## [1] 10  5 20
+```
+
+O vetor lógico filtra o vetor `minha_coluna`, retornando apenas os valores maiores que 3, já que foi esse o teste lógico que fizemos. 
+
+Essa é a *mágica* que acontece por trás de filtros no R. Na prática, não precisaremos usar colchetes, não lembraremos da reciclagem e nem veremos a cara dos `TRUE` e `FALSE`. Mas conhecer esse processo é muito importante, principalmente para encontrar problemas de código ou de base.
+
+---
+name: tabelas2
+# Mais sobre data frames
+
+Chegou a hora de usarmos tudo o que aprendemos na seção anterior para exploramos ao máximo o nosso objeto favorito: o *data frame*. 
+
+Para isso, continuaremos a usar o `mtcars`.
+
+
+```r
+mtcars
+```
+
+.tiny[
+
+```
+##                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360        14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230          22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280          19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+```
+]
+
+---
+## Acessando as colunas
+
+Lembrando que cada coluna de um *data frame* é um vetor, podemos usar o operador `$` para acessar cada uma de suas colunas.
+
+.tiny[
+
+```r
+mtcars$mpg
+```
+
+```
+##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4
+## [17] 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7 15.0 21.4
+```
+
+```r
+mtcars$cyl
+```
+
+```
+##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
+```
+
+```r
+mtcars$wt
+```
+
+```
+##  [1] 2.620 2.875 2.320 3.215 3.440 3.460 3.570 3.190 3.150 3.440 3.440 4.070 3.730
+## [14] 3.780 5.250 5.424 5.345 2.200 1.615 1.835 2.465 3.520 3.435 3.840 3.845 1.935
+## [27] 2.140 1.513 3.170 2.770 3.570 2.780
+```
+]
+
+---
+## Dimensões
+
+A classe *data frame* possui uma característica especial: seus objetos possuem duas **dimensões**.
+
+
+```r
+class(mtcars)
+```
+
+```
+## [1] "data.frame"
+```
+
+```r
+dim(mtcars)
+```
+
+```
+## [1] 32 11
+```
+
+O resultado do código `dim(mtcars)` nos diz que a primeira dimensão tem comprimento 32 e a segunda dimensão tem comprimento 11. Em outras palavras: a base `mtcars` tem 32 linhas e 11 colunas.
+
+---
+## Subsetting
+
+Ter duas dimensões significa que devemos usar dois índices para acessar os valores de um *data frame* (fazer *subsetting*). Para isso, ainda usamos o colchete, mas agora com dois argumentos: `[linha, coluna]`.
+
+
+```r
+mtcars[2, 3]
+```
+
+```
+## [1] 160
+```
+
+O código acima está nos devolvendo o valor presente na segunda linha da terceira coluna da base `mtcars`.
+
+---
+&lt;br&gt;&lt;br&gt;
+
+Também podemos pegar todos as linhas de uma coluna ou todas as colunas de uma linha deixando um dos argumentos vazio:
+
+.tiny[
+
+```r
+# Todas as linhas da coluna 1
+mtcars[,1]
+```
+
+```
+##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4
+## [17] 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7 15.0 21.4
+```
+
+```r
+# Todas as colunas da linha 1
+mtcars[1,]
+```
+
+```
+##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4
+```
+]
+
+---
+## Selecionando colunas
+
+Podemos usar o *subsetting* para selecionar colunas:
+
+
+```r
+mtcars[, c(1, 2)]
+```
+
+.tidy[
+
+```
+##                    mpg cyl
+## Mazda RX4         21.0   6
+## Mazda RX4 Wag     21.0   6
+## Datsun 710        22.8   4
+## Hornet 4 Drive    21.4   6
+## Hornet Sportabout 18.7   8
+## Valiant           18.1   6
+## Duster 360        14.3   8
+## Merc 240D         24.4   4
+## Merc 230          22.8   4
+## Merc 280          19.2   6
+```
+]
+
+---
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+mtcars[, c("mpg", "am")]
+```
+
+.tidy[
+
+```
+##                    mpg am
+## Mazda RX4         21.0  1
+## Mazda RX4 Wag     21.0  1
+## Datsun 710        22.8  1
+## Hornet 4 Drive    21.4  0
+## Hornet Sportabout 18.7  0
+## Valiant           18.1  0
+## Duster 360        14.3  0
+## Merc 240D         24.4  0
+## Merc 230          22.8  0
+## Merc 280          19.2  0
+```
+]
+
+Nos dois exemplos, exibimos apenas as 5 primeiras linhas do *data frame*.
+---
+## Filtrando linhas
+
+Também podemos usar o *subsetting* para filtrar linhas:
+
+.tiny[
+
+```r
+mtcars$cyl == 4
+```
+
+```
+##  [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
+## [14] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE
+## [27]  TRUE  TRUE FALSE FALSE FALSE  TRUE
+```
+
+```r
+mtcars[mtcars$cyl == 4, ]
+```
+
+```
+##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Merc 240D      24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230       22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Fiat 128       32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic    30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona  21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Fiat X1-9      27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+```
+]
+
+---
+&lt;br&gt;&lt;br&gt;
+
+O código `mtcars$cyl == 4` nos diz em quais linhas estão os carros com 4 cilindros. Quando usamos o vetor de `TRUE` e `FALSE` resultante dentro do *subsetting* das linhas em `mtcars[mtcars$cyl == 4, ]`, o R nos devolve todos as colunas dos carros com 4 cilindros.  A regra é a seguinte: linha com `TRUE` é retornada, linha com `FALSE` não.
+
+Outro exemplo:
+
+.tiny[
+
+```r
+mtcars[mtcars$mpg &gt; 25, ]
+```
+
+```
+##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Fiat 128       32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic    30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Fiat X1-9      27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+```
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
