@@ -42,8 +42,8 @@ knitr::kable(
 ```{r, echo = FALSE}
 knitr::kable(
   tibble::tibble(
-    script = list.files("R/", pattern = ".R"),
-    link = paste0("https://curso-r.github.io/", turma, "/R/", script)
+    script = list.files("exemplos_de_aula/", pattern = ".R"),
+    link = paste0("https://curso-r.github.io/", turma, "/exemplos_de_aula/", script)
   )
 )
 ```

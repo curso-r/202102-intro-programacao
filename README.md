@@ -11,7 +11,7 @@ abra-o.
 #### Passo 2: Baixar o material
 
 Certifique que você está dentro do projeto criado no passo 1 e rode o
-código abaixo, baixa [este
+código abaixo, baixe [este
 arquivo](https://github.com/curso-r/main-intro-programacao/archive/master.zip)
 e descompacte dentro da pasta do projeto.
 
@@ -27,8 +27,24 @@ e descompacte dentro da pasta do projeto.
 
 ## Scripts usados em aula
 
-| script | link |
-| :----- | :--- |
+| script                                 | link                                                                                                       |
+| :------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| 01-introducao.R                        | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/01-introducao.R>                      |
+| 02-exemplo-script.R                    | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/02-exemplo-script.R>                  |
+| 03-tabelas.R                           | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/03-tabelas.R>                         |
+| 04-exemplo-script.R                    | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/04-exemplo-script.R>                  |
+| 05-operadores\_controle-de-fluxo\_NA.R | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/05-operadores_controle-de-fluxo_NA.R> |
+| 06-exemplo-script.R                    | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/06-exemplo-script.R>                  |
+| 07-loops.R                             | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/07-loops.R>                           |
+| 08-exemplo-script.R                    | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/08-exemplo-script.R>                  |
+| 09-loops-2.R                           | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/09-loops-2.R>                         |
+| 10-exemplo-script.R                    | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/10-exemplo-script.R>                  |
+| 11-funcoes.R                           | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/11-funcoes.R>                         |
+| 12-exemplo-script-funcao.R             | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/12-exemplo-script-funcao.R>           |
+| 13-instalar-pacotes.R                  | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/13-instalar-pacotes.R>                |
+| 14-caminhos.R                          | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/14-caminhos.R>                        |
+| exemplo-source.R                       | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/exemplo-source.R>                     |
+| xx-pipe.R                              | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/xx-pipe.R>                            |
 
 ## Trabalhos finais
 
