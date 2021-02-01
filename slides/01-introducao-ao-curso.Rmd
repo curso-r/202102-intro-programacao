@@ -130,6 +130,38 @@ class: middle, center
     - A emissão de certificados ocorrerá mediante a entrega da atividade final do curso, que será apresentada na última aula do curso.
 
 ---
+## Orientações sobre a ferramenta de videochamadas
+
+
+- Utilizamos a ferramenta Zoom.
+
+- A barra inferior apresenta alguns controles importantes, como:
+
+```{r, echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/zoom_barra.png")
+```
+
+  - Áudio: ative o áudio caso queira falar algo.
+  
+  - Vídeo: opcional.
+  
+  - Bate-papo: se comunique conosco e com as pessoas da turma através do bate papo! 
+  
+  - Reações: 
+
+
+```{r, echo = FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics("img/zoom_reacoes.png")
+```
+
+---
+
+## Bate-papo no Zoom
+
+```{r, echo = FALSE, out.width="40%", fig.align='center'}
+knitr::include_graphics("img/zoom_batepapo.png")
+```
+---
 ## Introdução ao R
 
 .pull-left[
