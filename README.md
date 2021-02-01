@@ -18,7 +18,7 @@ e descompacte dentro da pasta do projeto.
 ## Slides
 
 | slide                              | link                                                                                  |
-| :--------------------------------- | :------------------------------------------------------------------------------------ |
+|:-----------------------------------|:--------------------------------------------------------------------------------------|
 | slides/01-introducao-ao-curso.html | <https://curso-r.github.io/main-intro-programacao/slides/01-introducao-ao-curso.html> |
 | slides/02-aula-1.html              | <https://curso-r.github.io/main-intro-programacao/slides/02-aula-1.html>              |
 | slides/03-aula-2.html              | <https://curso-r.github.io/main-intro-programacao/slides/03-aula-2.html>              |
@@ -28,7 +28,7 @@ e descompacte dentro da pasta do projeto.
 ## Scripts usados em aula
 
 | script                                 | link                                                                                                       |
-| :------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+|:---------------------------------------|:-----------------------------------------------------------------------------------------------------------|
 | 01-introducao.R                        | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/01-introducao.R>                      |
 | 02-exemplo-script.R                    | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/02-exemplo-script.R>                  |
 | 03-tabelas.R                           | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/03-tabelas.R>                         |
@@ -42,10 +42,12 @@ e descompacte dentro da pasta do projeto.
 | 11-funcoes.R                           | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/11-funcoes.R>                         |
 | 12-exemplo-script-funcao.R             | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/12-exemplo-script-funcao.R>           |
 | 13-instalar-pacotes.R                  | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/13-instalar-pacotes.R>                |
+| 13-pipe.R                              | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/13-pipe.R>                            |
 | 14-caminhos.R                          | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/14-caminhos.R>                        |
+| 14-instalar-pacotes.R                  | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/14-instalar-pacotes.R>                |
+| 15-caminhos.R                          | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/15-caminhos.R>                        |
 | exemplo-source.R                       | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/exemplo-source.R>                     |
-| xx-pipe.R                              | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/xx-pipe.R>                            |
 
 ## Trabalhos finais
 
-Em breve\!
+Em breve!

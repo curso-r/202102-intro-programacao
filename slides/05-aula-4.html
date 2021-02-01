@@ -371,8 +371,55 @@ name: pacotefs
 ---
 ## Lidando com arquivos com o pacote [`fs`](https://fs.r-lib.org/)
 
-...
-&lt;!-- Escrever! --&gt;
+-  O pacote `fs` tem como foco lidar com arquivos! 
+
+
+- Para utilizá-lo:
+
+
+```r
+install.packages("fs") # instale caso seja necessário!
+library(fs) # carregue o pacote para usar
+```
+
+
+Algumas funções muito úteis:
+
+- `dir_create()` - Função para criar um diretório (uma pasta no projeto ou outro local no computador). Caso ela já exista, nada acontecerá.
+
+- `file_create()` - Função para criar um arquivo. Caso ele já exista, nada acontecerá.
+
+- `dir_copy()` - Função para copiar um diretório (uma pasta).
+
+- `file_move()` - Função para mover arquivos.
+
+- `file_delete()` - Função para deletar arquivos.
+
+---
+
+- `dir_tree()` - Função para visualizar a estrutura de uma pasta.
+
+
+```r
+fs::dir_tree(path = "../", recurse = 0)
+```
+
+```
+## ../
+## ├── LICENSE
+## ├── README.Rmd
+## ├── README.md
+## ├── _config.yml
+## ├── dados
+## ├── exemplos_de_aula
+## ├── exercicios
+## ├── intro-progamacao.Rproj
+## ├── logo.png
+## ├── material.txt
+## ├── programa_anterior.Rmd
+## └── slides
+```
+- Mais funções: [documentação do pacote `fs`](https://fs.r-lib.org/)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

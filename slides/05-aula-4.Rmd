@@ -290,5 +290,34 @@ name: pacotefs
 ---
 ## Lidando com arquivos com o pacote [`fs`](https://fs.r-lib.org/)
 
-...
-<!-- Escrever! -->
+-  O pacote `fs` tem como foco lidar com arquivos! 
+
+
+- Para utilizá-lo:
+
+```{r eval=FALSE, include=TRUE}
+install.packages("fs") # instale caso seja necessário!
+library(fs) # carregue o pacote para usar
+```
+
+
+Algumas funções muito úteis:
+
+- `dir_create()` - Função para criar um diretório (uma pasta no projeto ou outro local no computador). Caso ela já exista, nada acontecerá.
+
+- `file_create()` - Função para criar um arquivo. Caso ele já exista, nada acontecerá.
+
+- `dir_copy()` - Função para copiar um diretório (uma pasta).
+
+- `file_move()` - Função para mover arquivos.
+
+- `file_delete()` - Função para deletar arquivos.
+
+---
+
+- `dir_tree()` - Função para visualizar a estrutura de uma pasta.
+
+```{r}
+fs::dir_tree(path = "../", recurse = 0)
+```
+- Mais funções: [documentação do pacote `fs`](https://fs.r-lib.org/)

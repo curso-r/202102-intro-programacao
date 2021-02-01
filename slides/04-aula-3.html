@@ -54,9 +54,158 @@ class: middle, center
 ---
 ## Controle de fluxo: if
 
-...
+- O `if` permite executar um código condicional. 
 
-&lt;!-- Escrever! --&gt;
+- Em português, pense no `if` como a palavra "SE", e o `else` como "SE NÃO":
+
+
+```r
+if (condicao) { # Se a condição for verdadeira
+ # o código que é executado quando a condição é verdadeira (TRUE)
+} else { # Se não
+ # o código que é executado quando a condição é falsa (FALSE)
+}
+```
+
+---
+
+- Podemos usar o `else if` para colocar outras condições:
+
+
+
+```r
+if (condicao) {
+ # faz coisa tal
+} else if (outra_condicao) {
+ # faz outra coisa 
+} else {
+ # o que fazer com o que não foi verdadeiro em todas as condições anteriores
+}
+```
+
+
+---
+## Controle de fluxo em funções
+
+- Podemos utilizar o `if` dentro de funções. É muito útil!
+
+- Exemplo: Queremos criar uma função que recebe como argumento a sigla de um estado brasileiro (ex. "RJ") e retorna um texto mostrando em região do país este estado está localizado.
+
+- A primeira coisa que devemos fazer é pensar no `if`:
+
+---
+
+
+```r
+sigla_estado &lt;- "SP" # Criamos um exemplo pra testar
+
+if (sigla_estado %in% c("DF")) {
+  print("Distrito Federal")
+  
+} else if (sigla_estado %in% c("AC", "AP", "AM", "RR", "PA", "RO", "TO")) {
+  print("Norte")
+  
+} else if (sigla_estado %in% c("AL",  "BA", "CE", "MA",  "PB",
+                               "PE", "PI", "SE" , "RN")) {
+  print("Nordeste")
+  
+} else if (sigla_estado %in% c("GO", "MT", "MS")) {
+  print("Centro-Oeste")
+
+} else if (sigla_estado %in% c("ES", "MG", "RJ", "SP")) {
+  print("Sudeste")
+  
+  
+} else if (sigla_estado %in% c("PR", "RS", "SC")) {
+  print("Sul")
+  
+} else {
+  print("Não encontrei este estado... Você pode conferir se digitou corretamente?")
+}
+```
+
+```
+## [1] "Sudeste"
+```
+
+---
+Agora que o if está pronto e funcionando, podemos adicioná-lo dentro de uma função (e o argumento é a sigla_estado):
+
+
+```r
+qual_regiao &lt;- function(sigla_estado) {
+  if (sigla_estado %in% c("DF")) {
+    print("Distrito Federal")
+    
+  } else if (sigla_estado %in% c("AC", "AP", "AM", "RR", "PA", "RO", "TO")) {
+    print("Norte")
+    
+  } else if (sigla_estado %in% c("AL",  "BA", "CE", "MA",  "PB",
+                                 "PE", "PI", "SE" , "RN")) {
+    print("Nordeste")
+    
+  } else if (sigla_estado %in% c("GO", "MT", "MS")) {
+    print("Centro-Oeste")
+    
+  } else if (sigla_estado %in% c("ES", "MG", "RJ", "SP")) {
+    print("Sudeste")
+    
+    
+  } else if (sigla_estado %in% c("PR", "RS", "SC")) {
+    print("Sul")
+    
+  } else {
+    print("Não encontrei este estado...Você pode conferir se digitou corretamente?")
+  }
+  
+}
+```
+
+---
+
+- Agora que a função foi criada, podemos utilizá-la e testar o resultado com diferentes estados:
+
+
+
+```r
+qual_regiao("CE")
+```
+
+```
+## [1] "Nordeste"
+```
+
+```r
+qual_regiao("AM")
+```
+
+```
+## [1] "Norte"
+```
+
+```r
+qual_regiao("GO")
+```
+
+```
+## [1] "Centro-Oeste"
+```
+
+```r
+qual_regiao("PR")
+```
+
+```
+## [1] "Sul"
+```
+
+```r
+qual_regiao("NA")
+```
+
+```
+## [1] "Não encontrei este estado...Você pode conferir se digitou corretamente?"
+```
 
 ---
 name: for
