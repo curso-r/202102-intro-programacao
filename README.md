@@ -71,6 +71,7 @@ e descompacte dentro da pasta do projeto.
 |-----:|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
 |    1 | [Folha de cola - R básico - Em inglês](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)                                                       |
 |    1 | [Folha de cola - RStudio (em português)](https://github.com/rstudio/cheatsheets/raw/master/translations/portuguese/rstudio-IDE-cheatsheet-portuguese.pdf) |
+|    2 | [Texto sobre o painel Environment no RStudio e o armazenamento de objetos: .RData e .Rhistory](https://curso-r.github.io/zen-do-r/rdata-rhistory.html)    |
 
 ## Trabalhos finais
 
