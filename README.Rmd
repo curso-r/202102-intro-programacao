@@ -48,18 +48,18 @@ knitr::kable(
 )
 ```
 
-## Trabalhos finais
+## Dados utilizados
 
-Em breve!
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, eval = FALSE}
-tab <- googlesheets4::read_sheet(ss = googlesheets4::as_sheets_id("1Qvgvx74CPfl5HZtiOBEUGlFulklMh05gHS7sxE6JFT4"))
-
-tab %>% 
-  dplyr::filter(turma == "202102-intro-programacao") %>% 
-  dplyr::select(Aluno = aluno, Link = link) %>% 
-  knitr::kable()
+```{r, echo = FALSE}
+knitr::kable(
+  tibble::tibble(
+    arquivo = list.files("dados"),
+    link = paste0("https://curso-r.github.io/", turma, "/dados/", arquivo)
+  )
+)
 ```
+
+
 
 ## Materiais complementares e outros links
 
@@ -80,3 +80,15 @@ tibble::tibble(aula = as.numeric(),
   knitr::kable(col.names = c("Aula", "Material"))
 ```
 
+## Trabalhos finais
+
+Em breve!
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval = FALSE}
+tab <- googlesheets4::read_sheet(ss = googlesheets4::as_sheets_id("1Qvgvx74CPfl5HZtiOBEUGlFulklMh05gHS7sxE6JFT4"))
+
+tab %>% 
+  dplyr::filter(turma == "202102-intro-programacao") %>% 
+  dplyr::select(Aluno = aluno, Link = link) %>% 
+  knitr::kable()
+```
