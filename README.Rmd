@@ -68,8 +68,15 @@ library(magrittr)
 tibble::tibble(aula = as.numeric(),
                desc = as.character(),
                url = as.character()) %>%
+  
+  
   tibble::add_row(aula = 1, desc = "Folha de cola - R básico - Em inglês", url = "http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf") %>% 
   tibble::add_row(aula = 1, desc = "Folha de cola - RStudio (em português)", url = "https://github.com/rstudio/cheatsheets/raw/master/translations/portuguese/rstudio-IDE-cheatsheet-portuguese.pdf")  %>% 
-  knitr::kable(col.names = c("Aula", "Descrição", "Link"))
+  
+  
+  dplyr::mutate(link = glue::glue("[{desc}]({url})")) %>% 
+  dplyr::select(-desc, -url) %>% 
+  
+  knitr::kable(col.names = c("Aula", "Material"))
 ```
 

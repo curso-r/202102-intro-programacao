@@ -54,7 +54,7 @@ Em breve!
 
 ## Materiais complementares e outros links
 
-| Aula | Descrição                              | Link                                                                                                              |
-|-----:|:---------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-|    1 | Folha de cola - R básico - Em inglês   | <http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf>                                                     |
-|    1 | Folha de cola - RStudio (em português) | <https://github.com/rstudio/cheatsheets/raw/master/translations/portuguese/rstudio-IDE-cheatsheet-portuguese.pdf> |
+| Aula | Material                                                                                                                                                  |
+|-----:|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    1 | [Folha de cola - R básico - Em inglês](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)                                                       |
+|    1 | [Folha de cola - RStudio (em português)](https://github.com/rstudio/cheatsheets/raw/master/translations/portuguese/rstudio-IDE-cheatsheet-portuguese.pdf) |
