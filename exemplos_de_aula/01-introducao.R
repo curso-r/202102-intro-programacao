@@ -5,7 +5,6 @@
 # ATALHO para rodar o código: CTRL + ENTER  
 # Mesmo atalho no Mac: Command + ENTER
 
-
 # adição
 1 + 1
 
@@ -25,10 +24,13 @@
 
 # Salvando o valor 1 no objeto "obj"
 obj <- 1
+
 obj
 
 # Também dizemos 'guardando as saídas'
-soma <- 2 + 2
+soma <- 2+2
+
+operacaoDoGabriel <- ((2 + 2)^2 + 150*5)/10 
 soma
 
 # ATALHO para a <- : ALT - (alt menos)
@@ -47,6 +49,12 @@ A
 resultado <- 33 / 11
 
 # atualizar um objeto
+
+resultado*5
+
+# salvando o resultado em um novo objeto
+resultado2 <- resultado * 5
+
 resultado <- resultado * 5
 
 # Os nomes devem começar com uma letra.
@@ -54,9 +62,24 @@ resultado <- resultado * 5
 
 # Permitido
 
+# todas as formas de criar variaveis abaixo são permitidas
+
+# podemos usar letra minuscula
 x <- 1
+
+# podemos usar letra maiuscula
+X <- 1
+
+# podemos misturar maiusculas e minusculas
+
+xX <- 1
+
 x1 <- 2
+x2 <- 2
+x2x <- 2
+
 objeto <- 3
+
 meu_objeto <- 4
 meu.objeto <- 5
 
@@ -66,17 +89,39 @@ meu.objeto <- 5
 _objeto <- 2
 meu-objeto <- 3
 
+meu <- 2
+objeto <- 5
+
 # Estilo de nomes
 
+operacao_do_gabriel
 eu_uso_snake_case
 outrasPessoasUsamCamelCase
 algumas.pessoas.usam.pontos
 E_algumasPoucas.Pessoas_RENUNCIAMconvenções
 
+# como deletar objetos
+
+a
+
+#como usar o rm: rm(NOME_DO_OBJETO)
+rm(a)
+rm(A)
+
+a
 
 # Exercícios --------------------------------------------------------------
 
 # 1. Multiplique a sua idade por 12 e salve em um objeto chamado "meses".
+
+# idade da vó chica: 91 anos
+
+meses <- 91*12
+
+meses_da_vo_chica <- 91*12
+
+idade_em_anos <- 91
+idade_em_meses <- idade_em_anos*12
 
 ##############################
 # Use aspas para criar texto #
@@ -117,7 +162,8 @@ vetor2
 # é utilizar o operador `:`
 
 # Vetor de 1 a 10
-1:10
+vetor3 <- 1:10
+vetor3 <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 # Vetor de 10 a 1
 10:1
@@ -131,6 +177,7 @@ vetor2
 # isso quer dizer que cada valor dentro de um vetor tem uma posição
 
 vetor <- c("a", "b", "c", "d")
+#           1    2    3    4
 
 vetor[1]
 vetor[2]
@@ -138,13 +185,21 @@ vetor[3]
 vetor[4]
 
 vetor[c(2, 3)]
+
+indices_que_quero_manter <- c(2, 3)
+
+vetor[indices_que_quero_manter]
+
 vetor[c(1, 2, 4)]
 
 vetor[5]
 
 # Você também pode excluir elementos de um vetor
 
+# são iguais:
 vetor[-1]
+vetor[c(2, 3, 4)]
+
 vetor[-c(2, 3)]
 
 # Um vetor só pode guardar um tipo de objeto e ele terá sempre
@@ -156,9 +211,16 @@ vetor2 <- c("a", "b", "c")
 # Se tentarmos misturar duas classes, o R vai apresentar o
 # comportamento conhecido como coerção
 
+numero <- 2
+numero_em_texto <- "2"
+
+numero+2
+numero_em_texto+2
+
 vetor <- c(1, 2, "a")
 
 vetor
+as.numeric(vetor) 
 
 # Naturalmente, podemos fazer operações matemáticas com vetores
 
@@ -183,6 +245,8 @@ vetor1  + vetor2
 vetor1 <- c(1, 2)
 vetor2 <- c(10, 20, 30, 40)
 
+vetor1 + vetor2
+
 # Esse comportamento é chamado de reciclagem.
 
 # As coisas ficam um pouco mais confusas quando os comprimentos
@@ -192,17 +256,35 @@ vetor1 <- c(1, 2, 3)
 vetor2 <- c(10, 20, 30, 40, 50)
 
 vetor1 + vetor2
+# essa operação dá um aviso (warning). uma mensagem que avisa de algo
+# que você pode querer prestar atenção!
+
+# erro: 
+1x <- 10
 
 # Exercícios --------------------------------------------------------------
 
 # a. Guarde em um objeto uma sequência de números que comece
 # em 0 e termine em 5.
 
-# b. Use subsetting para fazer o R devolver o primeiro número dessa sequência.
+resposta <- c(0, 1, 2, 3, 4, 5)
+resposta <- 0:5
+
+seq <- 0:5
+
+# b. Use subsetting ([]) para fazer o R devolver (devolver = imprimir na tela) o primeiro número dessa sequência.
 # Em seguida, faça o R devolver o último número da sequência.
+
+resposta[1]
+
+resposta[6]
+
+# curiosidade: no pacote dplyr tem uma função que se chama last
 
 # c. Multiplique todos os valores do vetor por -1. Guarde o resultado em
 # um novo objeto chamado 'versao_negativa'.
+
+versao_negativa <- resposta*-1
 
 # Funções -----------------------------------------------------------------
 
@@ -212,6 +294,10 @@ vetor1 + vetor2
 # a função `c()` foi utilizada para criar vetores;
 
 # Onde descobrir mais sobre uma função
+
+?c
+?as.numeric
+?seq
 
 ?seq
 help(seq)
@@ -225,17 +311,25 @@ c(1, 3, 5)
 # A ordem é importante se você não nomear os argumentos
 
 seq(from = 4, to = 10, by = 2)
+
+seq(from = 4, to = 10, by = 1)
+
 seq(4, 10, 2)
 
 seq(by = 2, to = 10, from = 4)
 seq(2, 10, 4)
 
-
 vetor_exemplos <- c(1, 5, 3.4, 7.23, 2.1, 3.8)
 
 # Exemplo 1 sum/mean - Como calcular uma média/soma
 
+?sum
+
 sum(vetor_exemplos)
+
+
+?mean
+
 mean(vetor_exemplos)
 
 # Exemplo 2 median - Como calcular uma mediana
@@ -264,7 +358,11 @@ round(vetor_exemplos)
 
 # Exemplo 8 - Descobrir o tamanho do vetor: quantos elementos ele tem?
 
+?length
+
 length(vetor_exemplos)
+
+vetor_exemplos[length(vetor_exemplos)]
 
 # Funções para mexer com textos
 
