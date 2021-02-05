@@ -71,7 +71,9 @@ e descompacte dentro da pasta do projeto.
 |-----:|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
 |    1 | [Folha de cola - R básico - Em inglês](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)                                                       |
 |    1 | [Folha de cola - RStudio (em português)](https://github.com/rstudio/cheatsheets/raw/master/translations/portuguese/rstudio-IDE-cheatsheet-portuguese.pdf) |
+|    2 | [Texto sobre projetos no RStudio: Rproj e diretórios](https://curso-r.github.io/zen-do-r/rproj-dir.html)                                                  |
 |    2 | [Texto sobre o painel Environment no RStudio e o armazenamento de objetos: .RData e .Rhistory](https://curso-r.github.io/zen-do-r/rdata-rhistory.html)    |
+|    3 | [Texto de introdução à estatística descritiva](https://escoladedados.org/tutoriais/analise-com-estatistica-descritiva-para-leigos/)                       |
 
 ## Trabalhos finais
 

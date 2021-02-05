@@ -72,8 +72,13 @@ tibble::tibble(aula = as.numeric(),
   
   tibble::add_row(aula = 1, desc = "Folha de cola - R básico - Em inglês", url = "http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf") %>% 
   tibble::add_row(aula = 1, desc = "Folha de cola - RStudio (em português)", url = "https://github.com/rstudio/cheatsheets/raw/master/translations/portuguese/rstudio-IDE-cheatsheet-portuguese.pdf")  %>% 
+      tibble::add_row(aula = 2, desc = "Texto sobre projetos no RStudio: Rproj e diretórios", url = "https://curso-r.github.io/zen-do-r/rproj-dir.html")  %>% 
     tibble::add_row(aula = 2, desc = "Texto sobre o painel Environment no RStudio e o armazenamento de objetos: .RData e .Rhistory", url = "https://curso-r.github.io/zen-do-r/rdata-rhistory.html")  %>% 
+
+      tibble::add_row(aula = 3, desc = "Texto de introdução à estatística descritiva", url = "https://escoladedados.org/tutoriais/analise-com-estatistica-descritiva-para-leigos/")  %>%   
   
+  
+
   
   
   
