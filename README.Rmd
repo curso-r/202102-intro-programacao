@@ -48,6 +48,41 @@ knitr::kable(
 )
 ```
 
+## Dados utilizados
+
+```{r, echo = FALSE}
+knitr::kable(
+  tibble::tibble(
+    arquivo = list.files("dados"),
+    link = paste0("https://curso-r.github.io/", turma, "/dados/", arquivo)
+  )
+)
+```
+
+
+
+## Materiais complementares e outros links
+
+```{r echo=FALSE}
+library(magrittr)
+tibble::tibble(aula = as.numeric(),
+               desc = as.character(),
+               url = as.character()) %>%
+  
+  
+  tibble::add_row(aula = 1, desc = "Folha de cola - R básico - Em inglês", url = "http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf") %>% 
+  tibble::add_row(aula = 1, desc = "Folha de cola - RStudio (em português)", url = "https://github.com/rstudio/cheatsheets/raw/master/translations/portuguese/rstudio-IDE-cheatsheet-portuguese.pdf")  %>% 
+    tibble::add_row(aula = 2, desc = "Texto sobre o painel Environment no RStudio e o armazenamento de objetos: .RData e .Rhistory", url = "https://curso-r.github.io/zen-do-r/rdata-rhistory.html")  %>% 
+  
+  
+  
+  
+  dplyr::mutate(link = glue::glue("[{desc}]({url})")) %>% 
+  dplyr::select(-desc, -url) %>% 
+  
+  knitr::kable(col.names = c("Aula", "Material"))
+```
+
 ## Trabalhos finais
 
 Em breve!
@@ -60,4 +95,3 @@ tab %>%
   dplyr::select(Aluno = aluno, Link = link) %>% 
   knitr::kable()
 ```
-
