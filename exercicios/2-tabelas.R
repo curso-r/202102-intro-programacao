@@ -6,7 +6,7 @@
 # (c) o que a função head() retorna?
 # (d) quais são os nomes das colunas?
 # (e) qual é a classe da coluna Ozone? Dicas: class() e '$'
-# (f) o que o código 'dplyr::glimpse(airquality) retorna?
+# (f) o que o código str(airquality) retorna?
 # (g) utilizando a resposta da (f), quais são os tipos de
 #     cada coluna da tabela airquality?
 
