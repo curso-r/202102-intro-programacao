@@ -41,11 +41,9 @@ e descompacte dentro da pasta do projeto.
 | 10-exemplo-script.R                    | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/10-exemplo-script.R>                  |
 | 11-funcoes.R                           | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/11-funcoes.R>                         |
 | 12-exemplo-script-funcao.R             | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/12-exemplo-script-funcao.R>           |
-| 13-instalar-pacotes.R                  | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/13-instalar-pacotes.R>                |
 | 13-pipe.R                              | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/13-pipe.R>                            |
 | 14-caminhos.R                          | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/14-caminhos.R>                        |
-| 14-instalar-pacotes.R                  | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/14-instalar-pacotes.R>                |
-| 15-caminhos.R                          | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/15-caminhos.R>                        |
+| 15-instalar-pacotes.R                  | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/15-instalar-pacotes.R>                |
 | exemplo-source.R                       | <https://curso-r.github.io/202102-intro-programacao/exemplos_de_aula/exemplo-source.R>                     |
 
 ## Dados utilizados
@@ -69,6 +67,8 @@ e descompacte dentro da pasta do projeto.
 
 | Aula | Material                                                                                                                                                  |
 |-----:|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    0 | [Instalação do R](https://livro.curso-r.com/1-1-instala%C3%A7%C3%A3o-do-r.html)                                                                           |
+|    0 | [Instalação do RStudio](https://livro.curso-r.com/1-2-instala%C3%A7%C3%A3o-do-rstudio.html)                                                               |
 |    1 | [Folha de cola - R básico - Em inglês](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)                                                       |
 |    1 | [Folha de cola - RStudio (em português)](https://github.com/rstudio/cheatsheets/raw/master/translations/portuguese/rstudio-IDE-cheatsheet-portuguese.pdf) |
 |    2 | [Texto sobre projetos no RStudio: Rproj e diretórios](https://curso-r.github.io/zen-do-r/rproj-dir.html)                                                  |
