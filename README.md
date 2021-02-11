@@ -74,6 +74,8 @@ e descompacte dentro da pasta do projeto.
 |    2 | [Texto sobre projetos no RStudio: Rproj e diretórios](https://curso-r.github.io/zen-do-r/rproj-dir.html)                                                  |
 |    2 | [Texto sobre o painel Environment no RStudio e o armazenamento de objetos: .RData e .Rhistory](https://curso-r.github.io/zen-do-r/rdata-rhistory.html)    |
 |    3 | [Texto de introdução à estatística descritiva](https://escoladedados.org/tutoriais/analise-com-estatistica-descritiva-para-leigos/)                       |
+|    4 | [Testes lógicos](https://livro.curso-r.com/3-7-testes-l%C3%B3gicos.html)                                                                                  |
+|    4 | [Valores especiais](https://livro.curso-r.com/3-8-valoresespeciais)                                                                                       |
 
 ## Trabalhos finais
 

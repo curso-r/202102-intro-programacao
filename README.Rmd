@@ -80,6 +80,12 @@ tibble::tibble(aula = as.numeric(),
   tibble::add_row(aula = 3, desc = "Texto de introdução à estatística descritiva", url = "https://escoladedados.org/tutoriais/analise-com-estatistica-descritiva-para-leigos/")  %>%
   
   
+    tibble::add_row(aula = 4, desc = "Testes lógicos", url = "https://livro.curso-r.com/3-7-testes-l%C3%B3gicos.html")  %>%
+  
+      tibble::add_row(aula = 4, desc = "Valores especiais", url = "https://livro.curso-r.com/3-8-valoresespeciais") %>% 
+  
+  
+  
   
   
   
