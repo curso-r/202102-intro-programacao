@@ -8,15 +8,16 @@
 
 # Carregando os dados -----------------------------------------------------
 
-vetor_de_dados_experimentais <- c(3.37, 4.32, 5.67, 8.31, 9.21, 7.89, 2.13, 4.13, 1.23, 10.11)
+vetor_de_dados_experimentais <- c(3.37, 4.32, 5.67, 8.31, 9.21, 7.89, 2.13,
+                                  4.13, 100.23, 10.11)
 
 # Calculando estatísticas -------------------------------------------------
 
 media <- round(mean(vetor_de_dados_experimentais), digits = 2)
 
-desvio_padrao <- sd(vetor_de_dados_experimentais)
+desvio_padrao <- round(sd(vetor_de_dados_experimentais), 2)
 
-coeficiente_de_variacao <- 100*desvio_padrao/media
+coeficiente_de_variacao <- 100 * desvio_padrao / media
 
 maximo <- max(vetor_de_dados_experimentais)
 
@@ -31,13 +32,17 @@ mensagem_que_vou_imprimir <-
     ", já o desvio padrão é ",
     desvio_padrao,
     ". O coeficiente de variação, portanto, é ",
-    coeficiente_de_variacao,
+    round(coeficiente_de_variacao, 2),
     ", enquanto o máximo e o mínimo, por sua vez, são ",
     minimo,
     " e ",
     maximo,
     "."
   )
+
+#  Atalho para identar : ctrl + shift + A
+
+
 
 print(mensagem_que_vou_imprimir)
 # olhe o console para ver esses resultados

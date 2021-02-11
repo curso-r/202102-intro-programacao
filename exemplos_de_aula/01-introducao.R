@@ -317,7 +317,24 @@ seq(from = 4, to = 10, by = 1)
 seq(4, 10, 2)
 
 seq(by = 2, to = 10, from = 4)
+
 seq(2, 10, 4)
+
+# exemplo da dúvida
+
+sequencia1 <- seq(1, 11, 1)
+
+sequencia2 <- seq(19, 30, 1)
+
+vetor_sequencia <- c(sequencia1, sequencia2)
+
+vetor_sequencia
+
+# outra forma
+
+c(1:11, 19:30)
+
+# outros exemplos
 
 vetor_exemplos <- c(1, 5, 3.4, 7.23, 2.1, 3.8)
 
@@ -356,6 +373,12 @@ min(vetor_exemplos)
 
 round(vetor_exemplos)
 
+round(7.23)
+
+round(7.23, 1)
+
+round(sd(vetor_exemplos), 2)
+
 # Exemplo 8 - Descobrir o tamanho do vetor: quantos elementos ele tem?
 
 ?length
@@ -363,6 +386,7 @@ round(vetor_exemplos)
 length(vetor_exemplos)
 
 vetor_exemplos[length(vetor_exemplos)]
+
 
 # Funções para mexer com textos
 
@@ -375,11 +399,15 @@ paste0("b", "a")
 
 resultado_colado <- paste0(1, "a")
 
+resultado_colado
+
+
+
 # Recapitulando
 
 # 1 - O R propriamente dito é aquela caixinha onde se lê "Console" escrito em cima
 
-# 2 - Você pode escrever comeando direto nele, do lado daquele sinal de maior: ">"
+# 2 - Você pode escrever comando direto nele, do lado daquele sinal de maior: ">"
 
 # É muito comum você fazer contas direto no Console, por exemplo. Nós aprendemos que 
 # praticamente todas as operações aritméticas estão no R

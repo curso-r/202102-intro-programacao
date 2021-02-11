@@ -15,11 +15,12 @@ library(readr)
 
 # Carregando os dados -----------------------------------------------------
 
-base_de_dados <- read_csv2("dados/voos_de_janeiro.csv")
+base_de_dados <- read_csv2("dados/voos_de_marco.csv")
 
 # Calculando estatísticas -------------------------------------------------
 
-media <- round(mean(base_de_dados$atraso_chegada, na.rm = TRUE), 2)
+media <- round(mean(base_de_dados$atraso_chegada, na.rm = TRUE), 2)      
+
 
 desvio_padrao <- round(sd(base_de_dados$atraso_chegada, na.rm = TRUE), 2)
 
@@ -32,7 +33,9 @@ minimo <- min(base_de_dados$atraso_chegada, na.rm = TRUE)
 # Criando um data.frame com as estatísticas descritivas -------------------
 
 
-est_descr <- data.frame(media, desvio_padrao, coeficiente_de_variacao, maximo, minimo)
+est_descr <- data.frame(media, desvio_padrao, 
+                        coeficiente_de_variacao,
+                        maximo, minimo)
 
 # salvar a tabela no computador -------------------------------------------
 
@@ -47,7 +50,7 @@ mensagem_que_vou_imprimir <- paste0("A média dos dados é ", media, ", já o de
                                     ", enquanto o máximo e o mínimo, por sua vez, são ", minimo, " e ", maximo,
                                     ".")
 
-paste0(mensagem_que_vou_imprimir)
+print(mensagem_que_vou_imprimir)
 
 
 

@@ -22,7 +22,9 @@
 # e aplica ela num texto, entre aspas. As aspas são importantes!
 
 
-install.packages("readr")
+# install.packages("readr")
+
+# enviar sobre como instalar versoes antigas do cran
 
 # para que todas as funções de leitura de dados fiquem disponíveis para você, 
 # você usa a função "library". Neste caso, funciona com ou sem aspas!
@@ -49,6 +51,11 @@ library("readr")
 
 base_de_dados <- read_csv2("dados/voos_de_janeiro.csv")
 
+
+base_de_dados_marco <- read_csv2("dados/voos_de_marco.csv")
+
+
+
 ## Exercício! ------------
 # Carregue a base de dados correspondente aos voos de fevereiro, 
 # e guarde em um objeto chamado 'base_de_dados_fev'
@@ -56,9 +63,9 @@ base_de_dados <- read_csv2("dados/voos_de_janeiro.csv")
 
 
 
+base_de_dados_fev <- read_csv2("dados/voos_de_fevereiro.csv")
 
-
-
+View(base_de_dados_fev)
 
 # Bases no R - o que é um data.frame? -------
 
@@ -87,12 +94,14 @@ ncol(base_de_dados)
 # Retorna o número de linhas
 nrow(base_de_dados)
 
-# Retorna o número de colunas e linhas (as dimensões do data.frame!)
+# Retorna o número de  linhas e colunas (as dimensões do data.frame!)
 dim(base_de_dados)
 
 
 # Primeiras 6 linhas de uma tabela
 head(base_de_dados)
+
+head(base_de_dados, 5)
 
 # Últimas 6 linhas de uma tabela
 tail(base_de_dados)
@@ -103,20 +112,26 @@ summary(base_de_dados)
 
 str(base_de_dados)
 
+# dplyr::glimpse(base_de_dados)
+
 ## Exercícios! ------------
 # Use as funções que apresentamos agora para descobrir:
 
 # a) Quantos voos a base que carregamos referente à fevereiro
 # (base_de_dados_fev) apresenta? (Dica: cada voo é apresentado em uma linha)
 
+nrow(base_de_dados_fev)
 
 # b) Qual é a dimensão do data.frame base_de_dados_fev? E o que significa?
 
+dim(base_de_dados_fev)
 
 # c) Considerando os meses de Janeiro e Fevereiro, em qual mês a distância
 # total voada foi maior?
 
+distancia_total_janeiro <- sum(base_de_dados$distancia)
 
+distancia_total_fev <- sum(base_de_dados_fev$distancia)
 
 # Datas no R ------------
 
@@ -208,6 +223,7 @@ base_de_dados$origem
 
 base_de_dados$companhia_aerea
 
+
 # Dica: use o tab do teclado para usar a funcionalidade de autocompletar.
 
 ## Selecionando elementos em um data.frame com o [ ] -------
@@ -223,6 +239,9 @@ base_de_dados[["companhia_aerea"]]
 base_de_dados[[13]]
 base_de_dados[[10]]
 
+
+# nome das variáveis
+names(base_de_dados)
 
 # A classe data frame tem uma característica especial: dimensão
 
@@ -240,19 +259,24 @@ dim(vetor)
 base_de_dados[1, 2] 
 
 # Seleciona a linha 1 e TODAS as colunas
-base_de_dados[1, ] 
+base_de_dados[1, ]  
 
 # Seleciona TODAS as linhas e apenas a coluna 2
 base_de_dados[ , 2] 
 
 
+
 # Selecionando colunas
 
-base_de_dados[, c(13, 10)]
+base_de_dados[ , c(13, 10)]  
+
 base_de_dados[, c("origem", "companhia_aerea")]
 
 
+
 # Dataframes e funções ------------
+
+base_de_dados$distancia
 
 # Qual é a soma ....?
 sum(base_de_dados$distancia)
@@ -275,3 +299,15 @@ var(base_de_dados$distancia)
 
 # Desvio padrão
 sd(base_de_dados$distancia)
+
+
+
+
+
+# 
+class(base_de_dados$data_hora)
+
+base_de_dados$data_hora <- as.Date(base_de_dados$data_hora)
+
+
+class(base_de_dados$data_hora) 
