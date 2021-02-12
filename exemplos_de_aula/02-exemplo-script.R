@@ -13,7 +13,7 @@ vetor_de_dados_experimentais <- c(3.37, 4.32, 5.67, 8.31, 9.21, 7.89, 2.13,
 
 # Calculando estatísticas -------------------------------------------------
 
-media <- mean(vetor_de_dados_experimentais)
+media <- round(mean(vetor_de_dados_experimentais), digits = 2)
 
 desvio_padrao <- round(sd(vetor_de_dados_experimentais), 2)
 
@@ -28,10 +28,9 @@ minimo <- min(vetor_de_dados_experimentais)
 mensagem_que_vou_imprimir <-
   paste0(
     "A média dos dados é ",
-    media,
+    format(media, decimal.mark = ","),
     ", já o desvio padrão é ",
-    format(desvio_padrao,
-           decimal.mark = ","),
+    desvio_padrao,
     ". O coeficiente de variação, portanto, é ",
     round(coeficiente_de_variacao, 2),
     ", enquanto o máximo e o mínimo, por sua vez, são ",
