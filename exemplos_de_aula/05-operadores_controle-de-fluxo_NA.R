@@ -9,15 +9,30 @@ class(FALSE)
 
 TRUE <- 1
 
+class(T) 
+# 
+# True <- 1
+# 
+# true 
+
 x <- 1
 
 # Testes com resultado verdadeiro
-x == 1
+x == 1 
+
+x == 1 # comparacao
+
+# x = 2 # atribuicao
+# x <- 2 # atribuicao
+
 "a" == "a"
+
+
 
 # Testes com resultado falso
 x == 2
 "a" == "b"
+"a" == "A"
 
 # Maior
 x > 3
@@ -27,8 +42,9 @@ x > 0
 x > 1
 x >= 1
 
+
 # Menor
-x < 3
+x < 3 
 x < 0
 
 # Menor ou igual
@@ -36,22 +52,33 @@ x < 1
 x <= 1
 
 # Diferente
-x != 1
+x != 1 
+
 x != 2
 
-x %in% c(1, 2, 3)
+x %in% c(1, 2, 3) 
+
 "a" %in% c("b", "c")
 
 # Comparações lógicas serão a base dos filtros!
 
 avaliacao_do_cliente <- c(1, 3, 0, 10, 2, 5, 20)
-estado_de_nascimento <- c("SP", "PB", "PB", "RJ", "MT", "MT")
+estado_de_nascimento <- c("SP", "PB", "PB", "RJ", "MT", "MT", "SP")
 
 avaliacao_do_cliente > 3
-estado_de_nascimento %in% c("SP", "MT")
+
 
 avaliacao_do_cliente[avaliacao_do_cliente > 3]
+
+estado_de_nascimento %in% c("SP", "MT")
+
+estado_de_nascimento[estado_de_nascimento %in% c("SP", "MT")]
+
+
 avaliacao_do_cliente[estado_de_nascimento %in% c("SP", "MT")]
+
+
+
 
 
 
@@ -62,7 +89,13 @@ avaliacao_do_cliente[estado_de_nascimento %in% c("SP", "MT")]
 
 vetor <- c(4, 8, 15, 16, 23, 42)
 
+vetor[c(FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)]
 
+vetor[vetor >= 10]
+
+vetor[c(3, 4, 5, 6)]
+
+vetor[c(3:6)]
 
 # Operadores lógicos ----------
 
@@ -71,20 +104,26 @@ vetor <- c(4, 8, 15, 16, 23, 42)
 
 x <- 5
 x >= 3 & x <=7
-
+# TRUE, TRUE
+# TRUE
 
 y <- 2
 y >= 3 & y <= 7
+# FALSE, TRUE  -> FALSE
+
 
 ## | - OU - Para ser verdadeiro, apenas um dos 
 # lados precisa ser verdadeiro
 
-y <- 2
+y <- 2 
+
 y >= 3 | y <=7
+# FALSE, TRUE -> TRUE
 
-y <- 1
+
+y <- 1 
 y >= 3 | y == 0
-
+# FALSE | FALSE
 
 ## ! - Negação - É o "contrário"
 
@@ -98,18 +137,33 @@ w <- 5
 
 
 # Filtrando linhas do data.frame  com vetores lógicos --------------
+library(readr)
+base_de_dados <- read.csv2("dados/voos_de_janeiro.csv")
+
+
 
 base_de_dados$atraso_chegada
 base_de_dados$atraso_chegada == 4  # Retorna um vetor de VERDADEIRO ou FALSO
 
 # Podemos filtrar linhas baseadas no retorno do vetor com TRUE e FALSE,
 # sendo que: o que for TRUE ficará na base, e o que for FALSE será removido.
-base_de_dados[base_de_dados$origem == "EWR",]
-base_de_dados[base_de_dados$tempo_voo > 100,]
+voos_origem_ewr <- base_de_dados[base_de_dados$origem == "EWR", ]
+View(voos_origem_ewr)
+
+
+voos_tempo_maior_100 <- base_de_dados[base_de_dados$tempo_voo > 100,   ]
 
 #  Podemos combinar!
-base_de_dados[base_de_dados$origem == "EWR" | base_de_dados$tempo_voo > 100,]
-base_de_dados[base_de_dados$origem == "EWR" & base_de_dados$tempo_voo > 100,]
+ex1 <- base_de_dados[base_de_dados$origem == "EWR" | base_de_dados$tempo_voo > 100,
+                     
+                     c("horario_saida", "origem", "tempo_voo")
+                     ]
+
+
+ex2 <- base_de_dados[base_de_dados$origem == "EWR" & base_de_dados$tempo_voo > 100,]
+
+
+# base[linhas, colunas]
 
 
 # Exercícios --------------------------------------------------------------
@@ -117,19 +171,54 @@ base_de_dados[base_de_dados$origem == "EWR" & base_de_dados$tempo_voo > 100,]
 # 1. Usando a base de voos, escreva um código que devolva apenas os voos 
 # que aconteceram no dia 15/01/2013:
 
+resposta1 <- base_de_dados[base_de_dados$dia == 15 & 
+                             base_de_dados$mes == 1,
+                           ]
+
+View(resposta1)
+
+
+base_de_dados$data <-  as.Date(base_de_dados$data_hora)
+resposta1_v2 <- base_de_dados[base_de_dados$data == "2013-01-15", ]
+View(resposta1_v2)
+
+# 4. Usando a base de voos, escreva um código que devolva apenas os voos 
+# que aconteceram nos dias 15/01/2013 ou 16/01/2013:
+
+
+ex4 <-
+  base_de_dados[base_de_dados$dia == 15 | base_de_dados$dia == 16 ,]
+
+View(ex4)
+
+# verificando
+
+unique(ex4$dia)
+table(ex4$dia)
 
 # 2. Usando a base de voos, escreva um código que devolva apenas os voos 
 # que NÃO sairam do aeroporto JFK:
 
+unique(base_de_dados$origem)
+
+
+resolucao_2 <- base_de_dados[base_de_dados$origem != "JFK", ]
+
+View(resolucao_2)
+
+unique(resolucao_2$origem)
 
 # 3. Usando a base de voos, escreva um código que devolva apenas os voos 
 # que sairam do aeroporto JFK, e foram para Atlanta ("ATL"), 
 # e salve em um objeto chamado voos_jfk_atlanta:
+resolucao3 <- base_de_dados[base_de_dados$origem == "JFK" & base_de_dados$destino == "ATL", ]
 
 
+View(resolucao3)
 
-# 4. Usando a base de voos, escreva um código que devolva apenas os voos 
-# que aconteceram nos dias 15/01/2013 ou 16/01/2013:
+unique(resolucao3$origem)
+
+unique(resolucao3$destino)
 
 
 
@@ -155,11 +244,11 @@ if(x == 1) {
 
 # if/else: faz uma ação se as condições anteriores não forem atendidas.
 
-x <- 1
+x <- 0
 
-if(x < 0){
+if(x < 0){ # se
   "negativo"
-} else {
+} else { # se não
   "não negativo"
 }
 
@@ -178,6 +267,12 @@ if(x < 0) {
 hoje <- Sys.Date()
 carnaval <- as.Date("2021-02-16")
 
+
+carnaval - hoje
+as.numeric(carnaval) - as.numeric(hoje) 
+
+
+
 if(hoje < carnaval){
   
   dias_para_carnaval <- as.numeric(carnaval - hoje) 
@@ -193,6 +288,10 @@ if(hoje < carnaval){
   
 }
 
+
+
+
+
 # Exercícios --------------------------------------------------------------
 
 # 1. Imagine que você é uma pessoa professora, e quer usar o R para saber
@@ -201,22 +300,18 @@ if(hoje < carnaval){
 # Usando o if, preencha os campos com ... abaixo para que o if retorne:
 # aprovada se tiver nota maior  ou igual a 5,
 # reprovada se tiver nota menor que 3,
-# e recuperação se tiver nota maior que 3 e menor que 5.
+# e recuperação se tiver nota maior ou igual que 3 e menor que 5.
 
 
-nota <- 5 
+nota <- 3
 
-if(nota >= 5){
-  
-  print("....")
-  
-} else if(....) {
-  
+if(nota >= 5) {
+  print("Aprovada")
+} else if (nota < 3) {
   print("Reprovada")
   
 } else {
-  
-  print("...")
+  print("Fazer a prova de recuperacao")
 }
 
 # 2. Continuando o exercício anterior: 
@@ -224,12 +319,37 @@ if(nota >= 5){
 # O que o código retorna é coerente com a nota que você passou?
 
 
+# outro exemplo
 
+sigla_estado <- "RS" # Criamos um exemplo pra testar
+
+if (sigla_estado %in% c("DF")) {
+  print("Distrito Federal")
+} else if (sigla_estado %in% c("AC", "AP", "AM", "RR", "PA", "RO", "TO")) {
+  print("Norte")
+} else if (sigla_estado %in% c("AL",  "BA", "CE", "MA",  "PB",
+                               "PE", "PI", "SE" , "RN")) {
+  print("Nordeste")
+} else if (sigla_estado %in% c("GO", "MT", "MS")) {
+  print("Centro-Oeste")
+} else if (sigla_estado %in% c("ES", "MG", "RJ", "SP")) {
+  print("Sudeste")
+} else if (sigla_estado %in% c("PR", "RS", "SC")) {
+  print("Sul")
+} else {
+  print("Não encontrei este estado... Você pode conferir se digitou corretamente?")
+}
 
 
 # Voltando a falar sobre tabelas!  ------------------------------------
 
 # Vamos carregar mais uma base! Voos de fevereiro
+
+
+library(readr)
+base_de_dados <- read.csv2("dados/voos_de_janeiro.csv")
+
+
 
 base_de_dados_fev <- read_csv2("dados/voos_de_fevereiro.csv")
 
@@ -242,12 +362,20 @@ head(base_de_dados_fev)
 
 base_jan_fev <- rbind(base_de_dados, base_de_dados_fev)
 
+View(base_jan_fev)
+
+unique(base_jan_fev$mes)
+
 # E se eu quiser adicionar uma nova coluna? 
 # cbind()   (de column bind)
 
 nome_mes <- "janeiro"
-cbind(base_de_dados, nome_mes)
 
+janeiro <- cbind(base_de_dados, nome_mes)
+
+data <- as.Date(base_de_dados$data_hora)
+
+janeiro2 <- cbind(base_de_dados, data)
 
 # Valores especiais -------------------------------------------------------
 
@@ -282,12 +410,20 @@ idade_beto == idade_carla
 x <- NA
 is.na(x)
 
+
+
 0 / 0 == NaN
 is.nan(0 / 0)
 
 
 idades <- c(15, 64, 31, NA, 59)
 is.na(idades)
+
+sum(idades)
+
+idades[!is.na(idades)]
+
+sum(idades[!is.na(idades)])
 
 is.nan(NaN)
 is.infinite(10 ^ 309)
