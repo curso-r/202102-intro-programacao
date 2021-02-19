@@ -293,6 +293,9 @@ is.nan(NaN)
 is.infinite(10 ^ 309)
 is.null(NULL)
 
+library(readr)
+
+base_de_dados <- read_csv2("dados/voos_de_janeiro.csv")
 
 # Dataframes e funções ------------
 
@@ -311,13 +314,24 @@ sum(is.na(base_de_dados$atraso_chegada)) # Quantos NA tem na coluna?
 # Assim somaremos quantos NA tem na coluna,
 # pois cada TRUE (presença de NA) será contabilizado como 1.
 
+# como o comando da linha 313 é processado pelo R?
+
+# primeiro passo é rodar is.na(base_de_dados$atraso_chegada)
+preliminar <- is.na(base_de_dados$atraso_chegada)
+
+# segundo passo é rodar o que tinha dentro do parenteses
+sum(preliminar)
+
+# por outro lado...
+
+sum(base_de_dados$atraso_chegada)
 
 # ... e se quisermos ignorar o NA? 
 # Algumas funções possuem um argumento para remover os NA:
 # na.rm = TRUE
 
 # Qual é a soma ....?
-sum(base_de_dados$atraso_chegada, na.rm = TRUE)
+sum(base_de_dados$atraso_chegada, na.rm = FALSE)
 
 # Menor valor encontrado: o menor número encontrado na coluna
 min(base_de_dados$atraso_chegada, na.rm = TRUE)
@@ -337,6 +351,32 @@ var(base_de_dados$atraso_chegada, na.rm = TRUE)
 # Desvio padrão
 sd(base_de_dados$atraso_chegada, na.rm = TRUE)
 
+# exemplo... o nosso desafio da na bse airquality
+
+?airquality
+
+# (a) tire a média da coluna Ozone. Dica: use mean(x, na.rm = TRUE).
+
+mean(airquality$Ozone)
+# isso daqui dá errado
+
+mean(airquality$Ozone, na.rm = TRUE)
+
+# outro jeito de fazer...
+
+qualidade_do_ar <- airquality
+
+coluna_ozone <- airquality$Ozone
+
+sum(is.na(coluna_ozone))
+
+mean(is.na(coluna_ozone))
+
+airquality_sem_na <- airquality[!is.na(airquality$Ozone), ]
+
+numero_de_linhas_sem_na <- nrow(airquality_sem_na)
+
+sum(airquality_sem_na$Ozone)/numero_de_linhas_sem_na
 
 # Exercícios ------------------------------------------
 # 1. Calcule o valor mínimo e valor máximo da coluna "atraso_saida". O que 

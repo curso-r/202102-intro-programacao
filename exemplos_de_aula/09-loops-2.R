@@ -69,6 +69,26 @@ for(aeroporto in lista_de_aeroportos){
   
 }
 
+# quando fazemos vetor_de_medias <- c(vetor_de_medias, media)
+
+# o R processa assim:
+
+# Passo do aeporto  EWR
+
+# vetor_de_medias esta valendo NULL
+# media vai valer 14.9057
+# a atualização fica assim
+# vetor_de_medias vai passar a valer NULL com o media empilhado à direita (14.9057)
+# vetor_de_medias está valendo 14.9057
+
+# Passo do aeroporto LGA
+
+# vetor_de_medias esta valendo 14.9057
+# media vai valer 5.64
+# a atualização fica assim
+# vetor_de_medias vai passar a valer 14.9057 com o media empilhado à direita (5.64)
+# vetor_de_medias está valendo c(14.9057, 5.64)
+
 # as médias estão chegando no "vetor_de_medias" conforme elas vão sendo
 # calculadas, mas isso é só porque nós acertamos na linha 65.
 
@@ -141,12 +161,58 @@ for(aeroporto in lista_de_aeroportos){
 
 # Exercício
 
+# 5 minutos
+
 # 1. Calcule as médias de atraso na chegada (a base de dados tem a coluna atraso_chegada também!)
 # para cada um dos destinos e guarde em um vetor "vetor_de_atraso_de_chegada".
+
+base_de_dados <- read_csv2("dados/voos_de_janeiro.csv")
+
+lista_de_aeroportos <- unique(base_de_dados$destino)
+vetor_de_atraso_de_chegada <- NULL
+
+for (dest in lista_de_aeroportos){
+  print(paste0("Calculando média de atraso na chegada do aeroporto ", dest))
+  
+  base_filtrada <- base_de_dados[base_de_dados$destino == dest, ]
+  
+  media <- mean(base_filtrada$atraso_chegada, na.rm = TRUE)
+  print(paste0("A média de atraso dos voos com destino ao ", dest, " é ", media))
+  vetor_de_atraso_de_chegada <- c(vetor_de_atraso_de_chegada , media)
+  #print(vetor_de_atraso_de_chegada)
+}
+
+
+lista_de_aeroportos_de_destino <- unique(base_de_dados$destino)
+
+vetor_de_atraso_de_chegada <- NULL
+
+for(dest in lista_de_aeroportos_de_destino){
+  
+  base_filtrada <- base_de_dados[base_de_dados$destino == dest, ]
+  
+  media <- mean(base_filtrada$atraso_chegada, na.rm = TRUE)
+  
+  vetor_de_atraso_de_chegada <- c(vetor_de_atraso_de_chegada, media)
+  
+}
+
+print(vetor_de_atraso_de_chegada)
 
 # Você pode conseguir uma lista desses destinos fazendo:
 # lista_de_aeroportos_de_destino <- unique(base_de_dados$destino
 
 # 2. Calcule o mínimo o médio e o máximo desse vetor. Quais são os destinos em que os voos chegam com maior atraso?
 # Para te ajudar a visualizar o resultado você poderia organizar os resultados em um data.frame.
+
+min(vetor_de_atraso_de_chegada)
+mean(vetor_de_atraso_de_chegada)
+max(vetor_de_atraso_de_chegada)
+
+atrasos <- data.frame(
+  destinos = lista_de_aeroportos_de_destino,
+  atraso_medio = vetor_de_atraso_de_chegada
+)
+
+atrasos[atrasos$atraso_medio == mean(atrasos$atraso_medio),]
 

@@ -14,7 +14,9 @@ library(readr)
 # Lista de arquivos -------------------------------------------------------
 
 arquivos <- c("dados/voos_de_janeiro.csv", "dados/voos_de_fevereiro.csv", "dados/voos_de_marco.csv",
-              "dados/voos_de_abril.csv", "dados/voos_de_maio.csv", "dados/voos_de_junho.csv")
+              "dados/voos_de_abril.csv", "dados/voos_de_maio.csv", "dados/voos_de_junho.csv",
+              "dados/voos_de_agosto.csv", "dados/voos_de_setembro.csv", "dados/voos_de_outubro.csv",
+              "dados/voos_de_novembro.csv", "dados/voos_de_dezembro.csv")
 
 
 # Parâmetros do script ----------------------------------------------------
@@ -25,6 +27,11 @@ meta <- 5 # meta é a média de até 5 min de atraso
 
 for(arquivo in arquivos){
   
+  # caso você queira olhar
+  # if(arquivo == "dados/voos_de_junho.csv"){
+  #   browser()
+  # }
+  
   dados <- readr::read_csv2(arquivo,
                             col_types = "dddddddddcdcccddddT",
                             col_names = TRUE,
@@ -33,12 +40,12 @@ for(arquivo in arquivos){
   # Filtrando os dados! ----------------------------------------------------
   
   base_filtrada <- dados[dados$origem == "JFK" & dados$destino == "ATL",]
-  
+  #base_filtrada <- dados
 
-  # Calcula a média do dia --------------------------------------------------
+  # Calcula a média do mês --------------------------------------------------
   
-  media <- round(mean(base_filtrada$atraso_saida, na.rm = TRUE), digits = 2)
-  
+  #media <- round(mean(base_filtrada$atraso_saida, na.rm = TRUE), digits = 2)
+  media <- round(mean(dados$atraso_saida, na.rm = TRUE), digits = 2)
   
   # Imprime a mensagem final em função dos dados ----------------------------
   
@@ -59,6 +66,8 @@ for(arquivo in arquivos){
 }
 
 # Exercício
+
+# 5 minutos
 
 # 1. Amplie a abrangência desse script para os 12 meses de dados
 
