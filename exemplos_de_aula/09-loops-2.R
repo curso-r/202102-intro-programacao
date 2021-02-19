@@ -215,4 +215,5 @@ atrasos <- data.frame(
 )
 
 atrasos[atrasos$atraso_medio == mean(atrasos$atraso_medio),]
-
+atrasos[atrasos$atraso_medio == max(atrasos$atraso_medio),]
+atrasos[atrasos$atraso_medio == min(atrasos$atraso_medio),]
