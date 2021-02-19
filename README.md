@@ -48,6 +48,9 @@ e descompacte dentro da pasta do projeto.
 
 ## Dados utilizados
 
+Os dados são derivados da base `voos` disponível no pacote
+[dados](https://cienciadedatos.github.io/dados/).
+
 | arquivo                 | link                                                                             |
 |:------------------------|:---------------------------------------------------------------------------------|
 | voos\_de\_abril.csv     | <https://curso-r.github.io/202102-intro-programacao/dados/voos_de_abril.csv>     |
