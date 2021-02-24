@@ -1,0 +1,15 @@
+Esse é um exemplo de solução para o nosso trabalho de conclusão de curso.
+
+Esta pasta está organizada como um projeto do RStudio e os scripts da pasta "R" foram escritos para execução por usuários que tenham aberto o arquivo "exemplo_arremessadores.Rproj" utilizando o RStudio.
+
+O objetivo desta análise é entender o comportamento das variáveis de uma base de dados e encontrar quem pode ser considerado o melhor arremessador de todos os tempos.
+
+Os scripts da pasta R executam uma série de rotinas de análise e manipulação dos dados disponíveis na pasta dados, que constituem a base de dados de referência do exercício. A lista de tarefas executadas por esse script segue abaixo:
+
+1. "R/0-compila_base_consolidada.R" é o primeiro script que precisa ser executado. Ele lê todas os arquivos dentro da pasta "dados", carrega os dados e no final escreve uma base consolidada em "dados/base_consolidada.csv"
+
+2. "R/1-gera_estatisticas.R" é um script que vai passear por todas as colunas dos arquivos "dados/base_consolidada.csv", com exceção das 5 primeiras, e calcular a média, o desvio padrão, o mínimo e o máximo da coluna. O resultado desses procedimentos vai ser armazenado em uma tabela em que cada linha representa uma coluna da base de dados, e as colunas vão ser "media", "desvio padrao", "minimo" e "maximo". Ao final do código, essa tabela vai ser salva "dados/analises/estatistica_descritiva_das_colunas.csv"
+
+3. "R/2-cria-colunas.R" vai ler o arquivo "dados/base_consolidada.csv" e vai salvar uma base de dados complementar com colunas novas no arquivo "dados/colunas_complementares.csv" 
+
+4. "R/3-encontra-melhor-arremessador.R" esse script lê as bases "dados/base_consolidada.csv" e "dados/colunas_complementares.csv", vai computar uma série de estatísticas de habilidade dos arremessadores e por fim vai encontrar o(s) melhor(es) arremessador(es) da base e imprimir quem é esse jogador na tela.
