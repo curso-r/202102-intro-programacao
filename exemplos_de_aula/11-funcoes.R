@@ -64,6 +64,9 @@ round(1, 10.55) # O resultado não será o que queremos :( trocamos a ordem dos
 # na aba help:
 ?round
 help(round)
+?sum
+??sum
+
 
 
 # Construindo funções no R ------------------------
@@ -96,14 +99,18 @@ imc
 # E o que colocaremos no corpo da função? Justamente a fórmula para calcular o IMC.
 
 
-calculo_imc <- function(peso, altura){
+calcular_imc <- function(peso, altura){
   imc <- peso/ (altura^2)
   round(imc, 2)      # podemos usar a função  round para arredondar o resultado
 }
 
 # Agora que a função está criada, podemos testar com diferentes pesos e alturas!
-calculo_imc(peso = 65, altura = 1.75)
+calcular_imc(peso = 90, altura = 1.90)
 
+
+calcular_imc(altura = 1.75, peso = 65)
+
+calcular_imc(altura = 1.75, peso = 65)
 
 # Função source ------------------------------------------------------
 
@@ -111,6 +118,8 @@ calculo_imc(peso = 65, altura = 1.75)
 # arquivo(s) .R,  e carregá-las no script que estamos utilizando com a função source():
 
 # source("caminho_para_o_arquivo.R")
+
+source("exercicios_resolvidos/1-introducao.R")
 
 # Atenção: a função source() vai executar todo o código que está no arquivo! 
 # Caso no arquivo tenha variáveis sendo criadas, elas serão carregadas também.
@@ -121,3 +130,26 @@ listar_arquivos("exemplos_de_aula/")
 source("exemplos_de_aula/exemplo-source.R")
 
 listar_arquivos("exemplos_de_aula/")
+
+
+# Exemplo pergunta
+
+voos <- dados::voos
+
+calcular_atraso <- function(horario_saida, horario_saida_esperado){
+  horario_saida - horario_saida_esperado
+}
+
+calcular_atraso(515, 517)
+
+calcular_atraso(voos$horario_saida, voos$saida_programada)
+
+
+# outro exemplo
+
+total_atraso <- function(horario_saida, horario_saida_esperado){
+  vetor_atraso <- horario_saida - horario_saida_esperado
+  sum(vetor_atraso, na.rm = TRUE)
+}
+
+total_atraso(voos$horario_saida, voos$saida_programada)

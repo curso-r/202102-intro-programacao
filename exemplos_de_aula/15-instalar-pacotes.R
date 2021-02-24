@@ -16,6 +16,8 @@ install.packages("readr") # Não execute agora.
 
 install.packages("devtools")  # Não execute agora. 
 
+devtools::install_github("cienciadedatos/dados")
+
 # Depois use a função install_github(). 
 # Você deve indicar entre aspas qual é o pacote 
 # que quer instalar,
@@ -33,6 +35,8 @@ devtools::install_github("tidyverse/readr")  # Não execute agora.
 
 
 library(readr)
+
+readr::read_csv2(...)
 
 
 # Atualizando pacotes --------

@@ -11,9 +11,6 @@
 
 library(readr)
 
-# Carregando os dados -----------------------------------------------------
-
-base_de_dados <- read_csv2("dados/voos_de_janeiro.csv")
 
 
 # Criando a função -----------------------------------------
@@ -25,6 +22,8 @@ calcula_estatisticas_descritivas <- function(df, coluna, meta = 5){
   
   
   coluna_desejada <- df[[coluna]]
+  
+  # df[[coluna]] é equivalente à df$coluna
   
   # Calculando estatísticas -------------------------------------------------
   
@@ -47,7 +46,7 @@ calcula_estatisticas_descritivas <- function(df, coluna, meta = 5){
   # salvar a tabela no computador -------------------------------------------
   
   
-  write_csv2(est_descr, file = paste0("estatisticas_descritivas_", coluna, ".csv"))
+  write_csv2(est_descr, file = paste0("estatisticas_descritivas_", df, "_", coluna, "_",meta, ".csv"))
   
   
   # Imprimindo os resultados finais -----------------------------------------
@@ -74,8 +73,18 @@ calcula_estatisticas_descritivas <- function(df, coluna, meta = 5){
 }
 
 
+
+# Carregando os dados -----------------------------------------------------
+
+base_de_dados <- read_csv2("dados/voos_de_agosto.csv")
+
+
 # Exemplo de uso da função
-calcula_estatisticas_descritivas(base_de_dados, "atraso_saida")
+calcula_estatisticas_descritivas(base_de_dados, "atraso_chegada", meta = 11)
+
+
+calcula_estatisticas_descritivas(dados::pinguins, "comprimento_bico")
+
 
 
 

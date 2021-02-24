@@ -1,3 +1,5 @@
+.libPaths() # ver onde o R instala os pacotes
+
 # Caminhos até arquivos --------------------------------------------------
 
 # Uma habilidade importante quando estamos analisando dados é 
@@ -7,9 +9,13 @@
 # da planilha que queremos ler, não conseguiremos abrir estes dados 
 # no R para fazer as análises.
 
+readr::read_csv2("voos_de_janeiro.csv") # errado
+
 # O primeiro conceito importante neste momento é o de diretórios de trabalho.
 # O diretório de trabalho, ou working directory, é a pasta no computador 
 # onde o R está considerando como nosso "local de trabalho" atual.
+
+getwd()
 
 
 # Quando trabalhamos com projetos no R (R projects), o diretório de trabalho
@@ -32,7 +38,9 @@ getwd()
 "/home/william/Documents/Curso-R/main-r4ds-1/dados/imdb.csv"
 
 # Caminhos relativos: são relativos ao  diretório de trabalho atual, partem dele.
-"dados/imdb.csv"
+"slides/01-introducao-ao-curso_files/figure-html/frink-out-1.png"
+
+write_csv2(dados::aeroportos, "dados_output/aeroportos.csv") 
 
 # (cara(o) professora(o), favor lembrar de falar da dica 
 # de navegação entre as aspas e a tecla tab)
@@ -67,6 +75,8 @@ list.files(pattern = ".csv")
 # que fazem parte da pasta que você está verificando
 list.files(recursive = TRUE)
 
+list.files(recursive = TRUE, pattern = ".csv")
+
 # o argumento full.names, caso seja verdadeiro, mantém o caminho relativo 
 # completo até o arquivo.
 list.files(full.names = TRUE)
@@ -77,6 +87,9 @@ list.files(full.names = TRUE)
 # até esse arquivo.
 
 arquivos <- list.files("dados", pattern = ".csv", full.names = TRUE) 
+
+
+arquivos
 
 # Com esse vetor, com uso de outras funções, será possível abrir diversas tabelas
 # (com a mesma estrutura) em uma única base no R com poucas linhas de código.
@@ -106,7 +119,28 @@ fs::file_create("exemplo_file_create.R")
 # Exemplo 3: Ver a estrutura do projeto no console: quais arquivos estão presentes?
 # como estão organizados nas pastas?
 
-fs::dir_tree()
+fs::dir_tree(recurse = 0)
+# > fs::dir_tree(recurse = 0)
+# .
+# ├── 202102-intro-programacao.Rproj
+# ├── README.Rmd
+# ├── README.md
+# ├── _config.yml
+# ├── dados
+# ├── dados_output
+# ├── estatisticas_descritivas.csv
+# ├── estatisticas_descritivas_atraso_chegada11.csv
+# ├── estatisticas_descritivas_atraso_saida.csv
+# ├── estatisticas_descritivas_atraso_saida11.csv
+# ├── estatisticas_descritivas_comprimento_bico5.csv
+# ├── exemplo_dir_create
+# ├── exemplo_file_create.R
+# ├── exemplos_de_aula
+# ├── exercicios
+# ├── exercicios_resolvidos
+# ├── fipezap_serieshistoricas.xlsx
+# ├── logo.png
+# └── slides
 
 # Exemplo 4: É possível copiar todos os arquivos de uma pasta para outra usando
 # a função dir_copy(). O primeiro argumento é o caminho para  pasta a ser copiada,
@@ -127,8 +161,11 @@ fs::file_create("pasta_com_arquivos_baguncados/OUTRO_ARQUIVO_COM_CAPS_LOCK.R")
 
 # Agora vamos criar vetores: com os nomes originais, e com os novos nomes
 nomes_originais <- list.files("pasta_com_arquivos_baguncados/", full.names = TRUE) 
+nomes_originais
 
 novos_nomes <- tolower(nomes_originais)  
+
+novos_nomes
 # a função tolower() é usada para transformar letras maiúsculas em minúsculas
 
 # usaremos a função file_move() para mover os arquivos com os caminhos originais, 
