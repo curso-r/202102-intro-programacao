@@ -18,6 +18,27 @@ numeross[numeross > 0]
 numeross[numeross %% 2 == 0]
 
 
+# Explicação: O operador %%  é utilizado para obter o resto da divisão. 
+# O código a seguir resulta no resto da divisão dos números por 2:
+
+numeross %% 2
+# [1] 0 1 0 1 0 1 0
+
+# Os números pares, quando divididos por 2, não tem resto nenhum! 
+# (Ou seja, o resto é zero)
+# Então fazemos o seguinte teste: 
+
+numeross %% 2 == 0
+# [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+
+# Os resultados verdadeiros sabemos que são pares.
+# Podemos usar este teste para filtrar o vetor números 
+# (deixar apenas os verdadeiros, ou seja, os números que a divisão por 
+# 2 tem resto igual a zero)
+
+numeross[numeross %% 2 == 0] 
+# [1] -4 -2  0  2
+
 # (c) Filtre o vetor para que retorne apenas aqueles valores que quando
 #     elevados a 2 são menores do que 4.
 
