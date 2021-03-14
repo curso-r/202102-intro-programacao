@@ -57,6 +57,22 @@ qual_e_o_maior(5, 10)
 
 qual_e_o_maior(10, 5)
 
+# Mais uma forma de resolver!
+
+qual_e_o_maior <- function(num1, num2) {
+  max(num1, num2)
+  
+}
+
+# Teste se o resultado faz sentido
+qual_e_o_maior(1, 2)
+
+qual_e_o_maior(5, 10)
+
+qual_e_o_maior(10, 5)
+
+
+
 
 # [desafio] 3. Crie uma função que recebe 2 números x e y
 # e devolve a raiz quadrada da soma desses números.
