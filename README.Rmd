@@ -30,12 +30,13 @@ Certifique que você está dentro do projeto criado no passo 1 e rode o código 
 ```{r, echo = FALSE}
 knitr::kable(
   tibble::tibble(
-    slide = CursoR:::list_github_files(main_repo, "slides/", "html"),
+    slide = CursoRutils:::list_github_files(main_repo, "slides/", "html"),
     link = paste0("https://curso-r.github.io/", main_repo, "/", slide)
   ) %>% 
     dplyr::filter(!stringr::str_detect(slide, "_files/"))
 )
 ```
+
 
 ## Scripts usados em aula
 

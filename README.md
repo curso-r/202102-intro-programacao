@@ -17,13 +17,16 @@ e descompacte dentro da pasta do projeto.
 
 ## Slides
 
-| slide                              | link                                                                                  |
-|:-----------------------------------|:--------------------------------------------------------------------------------------|
-| slides/01-introducao-ao-curso.html | <https://curso-r.github.io/main-intro-programacao/slides/01-introducao-ao-curso.html> |
-| slides/02-aula-1.html              | <https://curso-r.github.io/main-intro-programacao/slides/02-aula-1.html>              |
-| slides/03-aula-2.html              | <https://curso-r.github.io/main-intro-programacao/slides/03-aula-2.html>              |
-| slides/04-aula-3.html              | <https://curso-r.github.io/main-intro-programacao/slides/04-aula-3.html>              |
-| slides/05-aula-4.html              | <https://curso-r.github.io/main-intro-programacao/slides/05-aula-4.html>              |
+| slide                                    | link                                                                                        |
+|:-----------------------------------------|:--------------------------------------------------------------------------------------------|
+| slides/01-introducao-ao-curso.html       | <https://curso-r.github.io/main-intro-programacao/slides/01-introducao-ao-curso.html>       |
+| slides/02-introducao-ao-RStudio.html     | <https://curso-r.github.io/main-intro-programacao/slides/02-introducao-ao-RStudio.html>     |
+| slides/03-introducao-ao-R.html           | <https://curso-r.github.io/main-intro-programacao/slides/03-introducao-ao-R.html>           |
+| slides/04-tabelas.html                   | <https://curso-r.github.io/main-intro-programacao/slides/04-tabelas.html>                   |
+| slides/05-filtros.html                   | <https://curso-r.github.io/main-intro-programacao/slides/05-filtros.html>                   |
+| slides/06-controle-de-fluxo-e-loops.html | <https://curso-r.github.io/main-intro-programacao/slides/06-controle-de-fluxo-e-loops.html> |
+| slides/07-funcoes.html                   | <https://curso-r.github.io/main-intro-programacao/slides/07-funcoes.html>                   |
+| slides/08-manipulacao-de-arquivos.html   | <https://curso-r.github.io/main-intro-programacao/slides/08-manipulacao-de-arquivos.html>   |
 
 ## Scripts usados em aula
 
