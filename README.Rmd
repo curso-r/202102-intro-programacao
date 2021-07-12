@@ -25,12 +25,38 @@ Faça um projeto do RStudio para usar durante todo o curso e em seguida abra-o.
 
 Certifique que você está dentro do projeto criado no passo 1 e rode o código abaixo, baixe [este arquivo](https://github.com/curso-r/main-intro-programacao/archive/master.zip) e descompacte dentro da pasta do projeto.
 
+
+## Trabalhos finais premiados
+
+```{r, echo = FALSE}
+pasta <- "trabalhos_premiados/"
+tibble::tibble(script = list.files(pasta, recursive = TRUE)) %>%
+  dplyr::mutate(
+    link = paste0("https://curso-r.github.io/", turma, "/", pasta, script),
+    nome_underscore = c("Ana Rafaela Torres", "Fernando José", "Maykon Gabriel", "Victor Valério"),
+    codigo = paste0(
+      "https://github.com/curso-r/",
+      turma,
+      "/tree/master/",
+      pasta,
+      nome_underscore
+    ),
+    nome = stringr::str_replace_all(nome_underscore, "_", " "),
+    link_relatorio = glue::glue("[Trabalho]({link})")
+  ) %>%
+  dplyr::select(nome, link_relatorio) %>% knitr::kable(col.names = c("Nome", "Link para o trabalho"))
+```
+
 ## Slides
 
 ```{r, echo = FALSE}
 knitr::kable(
   tibble::tibble(
+<<<<<<< HEAD
     slide = CursoRutils:::list_github_files(main_repo, "slides/", "html"),
+=======
+    slide = CursoRutils:::list_github_files(main_repo, "slides/", "\\.html"),
+>>>>>>> 30f076f41c401ee5e4173ea4a493012c61bf9986
     link = paste0("https://curso-r.github.io/", main_repo, "/", slide)
   ) %>% 
     dplyr::filter(!stringr::str_detect(slide, "_files/"))
@@ -63,8 +89,6 @@ knitr::kable(
   )
 )
 ```
-
-
 
 ## Materiais complementares e outros links
 
@@ -103,17 +127,4 @@ tibble::tibble(aula = as.numeric(),
   dplyr::select(-desc,-url) %>%
   
   knitr::kable(col.names = c("Aula", "Material"))
-```
-
-## Trabalhos finais
-
-Em breve!
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, eval = FALSE}
-tab <- googlesheets4::read_sheet(ss = googlesheets4::as_sheets_id("1Qvgvx74CPfl5HZtiOBEUGlFulklMh05gHS7sxE6JFT4"))
-
-tab %>% 
-  dplyr::filter(turma == "202102-intro-programacao") %>% 
-  dplyr::select(Aluno = aluno, Link = link) %>% 
-  knitr::kable()
 ```

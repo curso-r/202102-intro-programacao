@@ -15,6 +15,15 @@ código abaixo, baixe [este
 arquivo](https://github.com/curso-r/main-intro-programacao/archive/master.zip)
 e descompacte dentro da pasta do projeto.
 
+## Trabalhos finais premiados
+
+| Nome               | Link para o trabalho                                                                                           |
+|:-------------------|:---------------------------------------------------------------------------------------------------------------|
+| Ana Rafaela Torres | [Trabalho](https://curso-r.github.io/202102-intro-programacao/trabalhos_premiados/trabalho_ana_rafaela.zip)    |
+| Fernando José      | [Trabalho](https://curso-r.github.io/202102-intro-programacao/trabalhos_premiados/trabalho_fernando_jose.rar)  |
+| Maykon Gabriel     | [Trabalho](https://curso-r.github.io/202102-intro-programacao/trabalhos_premiados/trabalho_maykon.zip)         |
+| Victor Valério     | [Trabalho](https://curso-r.github.io/202102-intro-programacao/trabalhos_premiados/trabalho_victor_valerio.zip) |
+
 ## Slides
 
 | slide                                    | link                                                                                        |
@@ -87,7 +96,3 @@ Os dados são derivados da base `voos` disponível no pacote
 |    4 | [Valores especiais](https://livro.curso-r.com/3-8-valoresespeciais)                                                                                       |
 |    6 | [Pipe](https://livro.curso-r.com/6-pipe.html)                                                                                                             |
 |    6 | [Pacote installr](https://cran.r-project.org/web/packages/installr/index.html)                                                                            |
-
-## Trabalhos finais
-
-Em breve!
